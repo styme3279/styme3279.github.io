@@ -1,0 +1,13 @@
+---
+layout: default
+title: Posts
+permalink: /posts/
+---
+
+<h2>Posts</h2>
+{% for post in site.posts %}
+<article>
+    <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+    <h3><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
+</article>
+{% endfor %}
