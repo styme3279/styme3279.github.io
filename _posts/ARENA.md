@@ -1,6 +1,5 @@
 ---
 layout:post
-title:Hello
 categories: random
 tags: None
 ---
