@@ -24,7 +24,6 @@ description: >- # this means to ignore newlines until "baseurl:"
   Hello!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://styme3279.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: not
 github_username:  not
 lang:  en
 
@@ -32,6 +31,7 @@ lang:  en
 theme: minima
 markdown: kramdown
 include: ['_pages']
+posts: ['_posts']
 # kramdown:
 #   math_engine: katex
 plugins:
