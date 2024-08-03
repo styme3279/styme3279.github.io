@@ -32,6 +32,7 @@ theme: minima
 markdown: kramdown
 include: ['_pages']
 posts: ['_posts']
+
 # kramdown:
 #   math_engine: katex
 plugins:
