@@ -29,7 +29,7 @@ github_username:  not
 lang:  en
 
 # Build settings
-remote_theme: pages-themes/architect@v0.2.0
+remote_theme: pages-themes/cayman@v0.2.0
 markdown: kramdown
 include: ['_pages']
 # kramdown:
