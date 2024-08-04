@@ -3,4 +3,4 @@ layout: page
 title: Now
 permalink: /now/
 ---
-This is real, this is me. I am exactly being what I am beinggg. Hello. Hello again.
+Currently I am living in London, working at the [LISA](https://www.safeai.org.uk) offices. Does LaTeX work here $\sqrt{3}$

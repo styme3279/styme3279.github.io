@@ -32,8 +32,8 @@ theme: minima
 markdown: kramdown
 include: ['_pages']
 
-# kramdown:
-#   math_engine: katex
+kramdown:
+  math_engine: katex
 plugins:
   - jekyll-feed
 
