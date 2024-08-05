@@ -3,13 +3,123 @@ layout: default
 ---
 
 <div class="home">
+    
     {%- if page.title -%}
     <h1 class="page-heading">{{ page.title }}</h1>
     {%- endif -%}
 
-    {{ content }}
-Hello
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-image">
+                <img src="images/tmpp2nispll.PNG" alt="AI generated images of me">
+            </div>
+            <div class="hero-text">
+                <h2>Hi, I'm [Your Name]</h2>
+                <p>Welcome to my personal website where I share my passions, projects, and thoughts.</p>
+            </div>
+        </div>
+    </section>
 
+    <section class="interests">
+        <h2>Things I Love</h2>
+        <div class="interest-links">
+            <div class="interest-item">
+                <h3><a href="/link-to-interest-1">Interest 1</a></h3>
+                <p>A brief description of Interest 1.</p>
+            </div>
+            <div class="interest-item">
+                <h3><a href="/link-to-interest-2">Interest 2</a></h3>
+                <p>A brief description of Interest 2.</p>
+            </div>
+            <div class="interest-item">
+                <h3><a href="/link-to-interest-3">Interest 3</a></h3>
+                <p>A brief description of Interest 3.</p>
+            </div>
+            <!-- Add more interests as needed -->
+        </div>
+    </section>
+
+    <section class="highlight">
+        <h2>Featured Project or Blog Post</h2>
+        <div class="highlight-content">
+            <div class="highlight-image">
+                <img src="/path/to/featured-image.jpg" alt="Featured Project or Blog Post">
+            </div>
+            <div class="highlight-text">
+                <h3><a href="/link-to-featured-content">Featured Content Title</a></h3>
+                <p>A brief description of the featured content.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-media">
+        <h2>Connect with Me</h2>
+        <div class="social-media-links">
+            <a href="https://twitter.com/yourprofile">Twitter</a>
+            <a href="https://linkedin.com/in/yourprofile">LinkedIn</a>
+            <a href="https://github.com/yourprofile">GitHub</a>
+            <!-- Add more social media links as needed -->
+        </div>
+    </section>
+
+    {{ content }}
 
 </div>
-Hello 
+
+<style>
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2em;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-image img {
+    border-radius: 50%;
+    max-width: 150px;
+}
+
+.hero-text {
+    margin-top: 1em;
+}
+
+.interests, .highlight, .social-media {
+    width: 80%;
+    max-width: 800px;
+    margin-bottom: 2em;
+}
+
+.interest-links, .highlight-content, .social-media-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.interest-item, .highlight-content {
+    flex: 1;
+    min-width: 200px;
+    margin: 1em;
+}
+
+.highlight-image img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.social-media-links a {
+    margin: 0 1em;
+}
+</style>
