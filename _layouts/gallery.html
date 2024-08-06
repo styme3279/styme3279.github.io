@@ -48,67 +48,54 @@ document.addEventListener('DOMContentLoaded', function() {
     const ratio = img.naturalWidth / img.naturalHeight;
     
     if (ratio > 1.3) {  // Landscape images
-      item.classList.add('wide');
+      item.style.gridColumn = "span 2";
     } else if (ratio < 0.7) {  // Portrait images
-      item.classList.add('tall');
+      item.style.gridRow = "span 2";
     }
     
     // For very wide panoramas
     if (ratio > 2) {
-      item.classList.add('panorama');
+      item.style.gridColumn = "1 / -1";  // Span all columns
     }
+
+    // Set the padding-bottom to maintain aspect ratio
+    item.style.paddingBottom = `${(img.naturalHeight / img.naturalWidth) * 100}%`;
   }
 
   items.forEach(handleImage);
 });
 </script>
-
 <style>
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 200px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 1px;
   grid-gap: 10px;
 }
 
 .photo-item {
+  position: relative;
   overflow: hidden;
 }
 
 .photo-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background-color:#f0f0f0; /* Light grey background */
 }
 
-.photo-item.wide {
-  grid-column: span 2;
-}
-
-.photo-item.tall {
-  grid-row: span 2;
-}
-
-.photo-item.panorama {
-  grid-column: 1 / -1;  /* Span all columns */
-}
-
-@media (max-width: 768px) {
-  .photo-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .photo-grid {
     grid-template-columns: 1fr;
   }
   
-  .photo-item.wide,
-  .photo-item.tall,
-  .photo-item.panorama {
-    grid-column: auto;
-    grid-row: auto;
+  .photo-item {
+    grid-column: auto !important;
+    grid-row: auto !important;
   }
 }
 </style>
