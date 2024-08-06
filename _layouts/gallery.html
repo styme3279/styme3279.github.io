@@ -10,20 +10,14 @@ layout: default
   </header>
 
   <div class="gallery-content">
-    {{ content }}
-    
-    <p>Debug: Gallery path is {{ page.gallery_path }}</p>
     {% if page.gallery_path %}
       <div class="photo-grid">
-        {% assign image_files = site.static_files | where_exp: "file", "file.path contains page.gallery_path" %}
-        <p>Debug: Found {{ image_files.size }} images</p>
-        {% for image in image_files %}
-          <p>Debug: Processing image: {{ image.path }}</p>
-          <div class="photo-item">
-            <img src="{{ image.path | relative_url }}" alt="{{ image.name }}" loading="lazy">
-          </div>
-        {% else %}
-          <p>No images found in the specified gallery path.</p>
+        {% for image in site.static_files %}
+          {% if image.path contains page.gallery_path %}
+            <div class="photo-item">
+              <img src="{{ site.baseurl }}{{ image.path }}" alt="{{ image.name }}" loading="lazy">
+            </div>
+          {% endif %}
         {% endfor %}
       </div>
     {% else %}
@@ -33,24 +27,6 @@ layout: default
 </article>
 
 <style>
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 1rem;
-}
 
-.photo-item {
-  position: relative;
-  padding-bottom: 100%;
-  overflow: hidden;
-}
-
-.photo-item img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 </style>
