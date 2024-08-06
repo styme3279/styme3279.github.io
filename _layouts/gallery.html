@@ -11,12 +11,16 @@ layout: default
   <div class="post-content">
     <div class="gallery">
       {% assign photos = site.static_files | where: "path", page.photos %}
+      {% assign image_extensions = "jpg,jpeg,png,gif" | split: "," %}
       {% for photo in photos %}
-        <div class="gallery-item">
-          <a href="{{ photo.path }}">
-            <img src="{{ photo.path }}" alt="{{ photo.name }}">
-          </a>
-        </div>
+        {% assign ext = photo.extname | remove_first: "." | downcase %}
+        {% if image_extensions contains ext %}
+          <div class="gallery-item">
+            <a href="{{ photo.path }}">
+              <img src="{{ photo.path }}" alt="{{ photo.name }}">
+            </a>
+          </div>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
