@@ -32,30 +32,38 @@ layout: default
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const grid = document.querySelector('.photo-grid');
-  const items = grid.querySelectorAll('.photo-item');
+  const items = Array.from(grid.querySelectorAll('.photo-item'));
+  const gridGap = 20; // Should match the grid-gap in CSS
+  const columnWidth = 200; // Should match the minmax value in CSS
 
   function handleImage(item) {
-    const img = item.querySelector('img');
-    
-    if (img.complete) {
-      setImageSize(item, img);
-    } else {
-      img.addEventListener('load', () => setImageSize(item, img));
-    }
+    return new Promise((resolve) => {
+      const img = item.querySelector('img');
+      if (img.complete) {
+        setImageSize(item, img);
+        resolve(item);
+      } else {
+        img.onload = () => {
+          setImageSize(item, img);
+          resolve(item);
+        };
+      }
+    });
   }
 
   function setImageSize(item, img) {
     const ratio = img.naturalWidth / img.naturalHeight;
+    item.ratio = ratio;
     
     if (ratio > 1.3) {  // Landscape images
-      item.style.gridColumn = "span 2";
+      item.style.gridColumnEnd = "span 2";
     } else if (ratio < 0.7) {  // Portrait images
-      item.style.gridRow = "span 2";
+      item.style.gridRowEnd = "span 2";
     }
     
     // For very wide panoramas
     if (ratio > 2) {
-      item.style.gridColumn = "1 / -1";  // Span all columns
+      item.style.gridColumnEnd = "span 3";  // Span 3 columns instead of all
     }
 
     // Calculate the height based on the width and original aspect ratio
@@ -64,16 +72,49 @@ document.addEventListener('DOMContentLoaded', function() {
     item.style.height = `${height}px`;
   }
 
-  items.forEach(handleImage);
+  function resizeGrid() {
+    const containerWidth = grid.offsetWidth;
+    const numColumns = Math.floor((containerWidth + gridGap) / (columnWidth + gridGap));
+    grid.style.gridTemplateColumns = `repeat(${numColumns}, 1fr)`;
+    
+    const columns = Array(numColumns).fill(0);
+    
+    items.forEach(item => {
+      const columnSpan = item.style.gridColumnEnd.split(' ')[1] || 1;
+      const rowSpan = item.style.gridRowEnd.split(' ')[1] || 1;
+      
+      // Find the column with the smallest height
+      let smallestColumn = columns.indexOf(Math.min(...columns));
+      
+      // If the item spans multiple columns, make sure there's enough space
+      if (columnSpan > 1) {
+        for (let i = smallestColumn; i < smallestColumn + columnSpan; i++) {
+          if (i >= numColumns || (i > smallestColumn && columns[i] > columns[smallestColumn])) {
+            smallestColumn++;
+            i = smallestColumn - 1;
+          }
+        }
+      }
+      
+      item.style.gridColumnStart = smallestColumn + 1;
+      item.style.gridRowStart = columns[smallestColumn] + 1;
+      
+      // Update the height of the affected columns
+      for (let i = smallestColumn; i < smallestColumn + columnSpan; i++) {
+        columns[i] = columns[smallestColumn] + rowSpan;
+      }
+    });
+  }
 
-  // Recalculate sizes on window resize
-  window.addEventListener('resize', () => items.forEach(handleImage));
+  Promise.all(items.map(handleImage)).then(() => {
+    resizeGrid();
+    window.addEventListener('resize', resizeGrid);
+  });
 });
 </script>
 <style>
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 20px;
   padding: 20px;
 }
@@ -92,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 @media (max-width: 600px) {
   .photo-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
   
   .photo-item {
