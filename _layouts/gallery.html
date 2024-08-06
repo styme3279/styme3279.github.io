@@ -14,7 +14,7 @@ layout: default
       {% assign image_extensions = "jpg,jpeg,png,gif" | split: "," %}
       {% for photo in photos %}
         {% assign ext = photo.extname | remove_first: "." | downcase %}
-        {% if image_extensions contains ext %}
+        {% if image_extensions contains ext and photo.path contains page.photos %}
           <div class="gallery-item">
             <a href="{{ photo.path }}">
               <img src="{{ photo.path }}" alt="{{ photo.name }}">
