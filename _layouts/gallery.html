@@ -1,62 +1,50 @@
 ---
 layout: default
 ---
+<article class="gallery">
+  <header class="gallery-header">
+    <h1 class="gallery-title">{{ page.title | escape }}</h1>
+    {% if page.description %}
+      <p class="gallery-description">{{ page.description }}</p>
+    {% endif %}
+  </header>
 
-<div class="gallery">
-    <article class="post">
-  
-      <header class="post-header">
-        <h1 class="post-title">{{ page.title | escape }}</h1>
-      </header>
-  
-      <div class="post-content">
-        <div class="gallery">
-          {% assign image_extensions = "jpg,jpeg,png,gif" | split: "," %}
-          {% assign photos = site.static_files | where_exp: "photo", "photo.path contains page.photos" %}
-          {% for photo in photos %}
-            {% assign ext = photo.extname | remove_first: "." | downcase %}
-            {% if image_extensions contains ext %}
-              <div class="gallery-item">
-                <a href="{{ photo.path }}">
-                  <img src="{{ photo.path }}" alt="{{ photo.name }}">
-                </a>
-              </div>
-            {% endif %}
-          {% endfor %}
-        </div>
+  <div class="gallery-content">
+    {% if page.gallery_path %}
+      <div class="photo-grid">
+        {% for image in site.static_files %}
+          {% if image.path contains page.gallery_path %}
+            <div class="photo-item">
+              <img src="{{ site.baseurl }}{{ image.path }}" alt="{{ image.name }}" loading="lazy">
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
-  
-    </article>
-</div>
+    {% else %}
+      <p>No gallery path specified.</p>
+    {% endif %}
+  </div>
+</article>
 
 <style>
-/* gallery.css */
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
 }
 
-.gallery-item {
-  flex: 1 1 calc(33.333% - 10px);
-  box-sizing: border-box;
+.photo-item {
+  position: relative;
+  padding-bottom: 100%;
+  overflow: hidden;
 }
 
-.gallery-item img {
+.photo-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
-  display: block;
-}
-
-@media (max-width: 768px) {
-  .gallery-item {
-    flex: 1 1 calc(50% - 10px);
-  }
-}
-
-@media (max-width: 480px) {
-  .gallery-item {
-    flex: 1 1 100%;
-  }
+  height: 100%;
+  object-fit: cover;
 }
 </style>
