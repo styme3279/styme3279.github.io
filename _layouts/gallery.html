@@ -8,8 +8,7 @@ layout: default
     <h1 class="post-title">{{ page.title | escape }}</h1>
   </header>
 
-  <div class="post-content">
-    <div class="gallery">
+  <div class="gallery">
       {% assign photos = site.static_files | where: "path", page.photos %}
       {% assign image_extensions = "jpg,jpeg,png,gif" | split: "," %}
       {% for photo in photos %}
@@ -22,7 +21,6 @@ layout: default
           </div>
         {% endif %}
       {% endfor %}
-    </div>
   </div>
 
 </article>
