@@ -31,7 +31,8 @@ layout: default
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const items = document.querySelectorAll('.photo-item');
+  const grid = document.querySelector('.photo-grid');
+  const items = grid.querySelectorAll('.photo-item');
 
   function handleImage(item) {
     const img = item.querySelector('img');
@@ -47,32 +48,40 @@ document.addEventListener('DOMContentLoaded', function() {
     const ratio = img.naturalWidth / img.naturalHeight;
     
     if (ratio > 1.3) {  // Landscape images
-      item.classList.add('landscape');
+      item.style.gridColumn = "span 2";
     } else if (ratio < 0.7) {  // Portrait images
-      item.classList.add('portrait');
+      item.style.gridRow = "span 2";
     }
     
     // For very wide panoramas
     if (ratio > 2) {
-      item.classList.add('panorama');
+      item.style.gridColumn = "1 / -1";  // Span all columns
     }
+
+    // Calculate the height based on the width and original aspect ratio
+    const width = item.offsetWidth;
+    const height = width / ratio;
+    item.style.height = `${height}px`;
   }
 
   items.forEach(handleImage);
+
+  // Recalculate sizes on window resize
+  window.addEventListener('resize', () => items.forEach(handleImage));
 });
 </script>
 <style>
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-auto-rows: 200px;
   grid-gap: 20px;
   padding: 20px;
 }
 
 .photo-item {
+  position: relative;
   overflow: hidden;
-  background-color: #f0f0f0;
+  background-color: #f0f0f0; /* Light grey background */
 }
 
 .photo-item img {
@@ -81,28 +90,14 @@ document.addEventListener('DOMContentLoaded', function() {
   object-fit: contain;
 }
 
-.photo-item.landscape {
-  grid-column: span 2;
-}
-
-.photo-item.portrait {
-  grid-row: span 2;
-}
-
-.photo-item.panorama {
-  grid-column: 1 / -1;
-}
-
 @media (max-width: 600px) {
   .photo-grid {
     grid-template-columns: 1fr;
   }
   
-  .photo-item.landscape,
-  .photo-item.portrait,
-  .photo-item.panorama {
-    grid-column: auto;
-    grid-row: auto;
+  .photo-item {
+    grid-column: auto !important;
+    grid-row: auto !important;
   }
 }
 </style>
