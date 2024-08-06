@@ -2,34 +2,31 @@
 layout: default
 ---
 
-<div class = "gallery">
-  {%- include head.html -%}
-
-    {%- include header.html -%}
-
-    <main class="page-content" aria-label="Content">
-      <div class="wrapper">
+<div class="gallery">
+    <article class="post">
+  
+      <header class="post-header">
+        <h1 class="post-title">{{ page.title | escape }}</h1>
+      </header>
+  
+      <div class="post-content">
         <div class="gallery">
-            {% assign photos = "" | split: "" %}
-            {% assign target_path = page.photos %}
-            {% for file in site.static_files %}
-              {% if file.path contains target_path %}
-                {% assign photos = photos | push: file %}
-              {% endif %}
-            {% endfor %}
+          {% assign image_extensions = "jpg,jpeg,png,gif" | split: "," %}
+          {% assign photos = site.static_files | where_exp: "photo", "photo.path contains page.photos" %}
           {% for photo in photos %}
-            <div class="gallery-item">
-              <a href="{{ photo.path }}">
-                <img src="{{ photo.path }}" alt="{{ photo.name }}">
-              </a>
-            </div>
+            {% assign ext = photo.extname | remove_first: "." | downcase %}
+            {% if image_extensions contains ext %}
+              <div class="gallery-item">
+                <a href="{{ photo.path }}">
+                  <img src="{{ photo.path }}" alt="{{ photo.name }}">
+                </a>
+              </div>
+            {% endif %}
           {% endfor %}
         </div>
       </div>
-    </main>
-
-    {%- include footer.html -%}
-
+  
+    </article>
 </div>
 
 <style>
