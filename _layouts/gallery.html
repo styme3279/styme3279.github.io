@@ -10,14 +10,20 @@ layout: default
   </header>
 
   <div class="gallery-content">
+    {{ content }}
+    
+    <p>Debug: Gallery path is {{ page.gallery_path }}</p>
     {% if page.gallery_path %}
       <div class="photo-grid">
-        {% for image in site.static_files %}
-          {% if image.path contains page.gallery_path %}
-            <div class="photo-item">
-              <img src="{{ site.baseurl }}{{ image.path }}" alt="{{ image.name }}" loading="lazy">
-            </div>
-          {% endif %}
+        {% assign image_files = site.static_files | where_exp: "file", "file.path contains page.gallery_path" %}
+        <p>Debug: Found {{ image_files.size }} images</p>
+        {% for image in image_files %}
+          <p>Debug: Processing image: {{ image.path }}</p>
+          <div class="photo-item">
+            <img src="{{ image.path | relative_url }}" alt="{{ image.name }}" loading="lazy">
+          </div>
+        {% else %}
+          <p>No images found in the specified gallery path.</p>
         {% endfor %}
       </div>
     {% else %}
