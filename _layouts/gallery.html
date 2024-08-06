@@ -31,98 +31,48 @@ layout: default
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const grid = document.querySelector('.photo-grid');
-  const items = Array.from(grid.querySelectorAll('.photo-item'));
-  const gridGap = 20; // Should match the grid-gap in CSS
-  const columnWidth = 200; // Should match the minmax value in CSS
+  const items = document.querySelectorAll('.photo-item');
 
   function handleImage(item) {
-    return new Promise((resolve) => {
-      const img = item.querySelector('img');
-      if (img.complete) {
-        setImageSize(item, img);
-        resolve(item);
-      } else {
-        img.onload = () => {
-          setImageSize(item, img);
-          resolve(item);
-        };
-      }
-    });
+    const img = item.querySelector('img');
+    
+    if (img.complete) {
+      setImageSize(item, img);
+    } else {
+      img.addEventListener('load', () => setImageSize(item, img));
+    }
   }
 
   function setImageSize(item, img) {
     const ratio = img.naturalWidth / img.naturalHeight;
-    item.ratio = ratio;
     
     if (ratio > 1.3) {  // Landscape images
-      item.style.gridColumnEnd = "span 2";
+      item.classList.add('landscape');
     } else if (ratio < 0.7) {  // Portrait images
-      item.style.gridRowEnd = "span 2";
+      item.classList.add('portrait');
     }
     
     // For very wide panoramas
     if (ratio > 2) {
-      item.style.gridColumnEnd = "span 3";  // Span 3 columns instead of all
+      item.classList.add('panorama');
     }
-
-    // Calculate the height based on the width and original aspect ratio
-    const width = item.offsetWidth;
-    const height = width / ratio;
-    item.style.height = `${height}px`;
   }
 
-  function resizeGrid() {
-    const containerWidth = grid.offsetWidth;
-    const numColumns = Math.floor((containerWidth + gridGap) / (columnWidth + gridGap));
-    grid.style.gridTemplateColumns = `repeat(${numColumns}, 1fr)`;
-    
-    const columns = Array(numColumns).fill(0);
-    
-    items.forEach(item => {
-      const columnSpan = item.style.gridColumnEnd.split(' ')[1] || 1;
-      const rowSpan = item.style.gridRowEnd.split(' ')[1] || 1;
-      
-      // Find the column with the smallest height
-      let smallestColumn = columns.indexOf(Math.min(...columns));
-      
-      // If the item spans multiple columns, make sure there's enough space
-      if (columnSpan > 1) {
-        for (let i = smallestColumn; i < smallestColumn + columnSpan; i++) {
-          if (i >= numColumns || (i > smallestColumn && columns[i] > columns[smallestColumn])) {
-            smallestColumn++;
-            i = smallestColumn - 1;
-          }
-        }
-      }
-      
-      item.style.gridColumnStart = smallestColumn + 1;
-      item.style.gridRowStart = columns[smallestColumn] + 1;
-      
-      // Update the height of the affected columns
-      for (let i = smallestColumn; i < smallestColumn + columnSpan; i++) {
-        columns[i] = columns[smallestColumn] + rowSpan;
-      }
-    });
-  }
-
-  Promise.all(items.map(handleImage)).then(() => {
-    resizeGrid();
-    window.addEventListener('resize', resizeGrid);
-  });
+  items.forEach(handleImage);
 });
 </script>
 <style>
 .photo-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: 200px;
   grid-gap: 20px;
   padding: 20px;
 }
 
 .photo-item {
-  position: relative;
   overflow: hidden;
-  background-color: #f0f0f0; /* Light grey background */
+  background-color: #f0f0f0;
 }
 
 .photo-item img {
@@ -131,14 +81,28 @@ document.addEventListener('DOMContentLoaded', function() {
   object-fit: contain;
 }
 
+.photo-item.landscape {
+  grid-column: span 2;
+}
+
+.photo-item.portrait {
+  grid-row: span 2;
+}
+
+.photo-item.panorama {
+  grid-column: 1 / -1;
+}
+
 @media (max-width: 600px) {
   .photo-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
   }
   
-  .photo-item {
-    grid-column: auto !important;
-    grid-row: auto !important;
+  .photo-item.landscape,
+  .photo-item.portrait,
+  .photo-item.panorama {
+    grid-column: auto;
+    grid-row: auto;
   }
 }
 </style>
