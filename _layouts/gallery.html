@@ -58,34 +58,36 @@ document.addEventListener('DOMContentLoaded', function() {
       item.style.gridColumn = "1 / -1";  // Span all columns
     }
 
-    // Set the padding-bottom to maintain aspect ratio
-    item.style.paddingBottom = `${(img.naturalHeight / img.naturalWidth) * 100}%`;
+    // Calculate the height based on the width and original aspect ratio
+    const width = item.offsetWidth;
+    const height = width / ratio;
+    item.style.height = `${height}px`;
   }
 
   items.forEach(handleImage);
+
+  // Recalculate sizes on window resize
+  window.addEventListener('resize', () => items.forEach(handleImage));
 });
 </script>
 <style>
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-auto-rows: 1px;
-  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 20px;
+  padding: 20px;
 }
 
 .photo-item {
   position: relative;
   overflow: hidden;
+  background-color: #f0f0f0; /* Light grey background */
 }
 
 .photo-item img {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background-color:#f0f0f0; /* Light grey background */
 }
 
 @media (max-width: 600px) {
