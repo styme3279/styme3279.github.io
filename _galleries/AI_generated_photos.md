@@ -1,0 +1,8 @@
+---
+title: AI Generated Photos of me
+description: "AI Generated Photos"
+gallery_path: /images/All AI images
+layout: gallery
+preview_image: /images/All AI images/AbstractImageAI17.png
+---
+Here's some AI generated photos of me. Some of them are pretty wacky/uncanny and many do not really look like me, but I thought they might be pretty funny to look at. Also maybe interesting as a historical document after personalised AI generated images get vastly vastly better (unless they already have).
