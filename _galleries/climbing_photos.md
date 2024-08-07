@@ -1,7 +1,6 @@
 ---
-layout: gallery
 title: Lake District Gallery
-description: "Photos from my climbing trip to the Lake District."
+description: "Lake District Climbing Trip"
 gallery_path: /images/Climbing_photos
 ---
 
