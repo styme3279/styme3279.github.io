@@ -24,6 +24,12 @@ permalink: /galleries/
   font-size: 1.2em;
   margin-top: 10px;
 }
+.debug-info {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 0.8em;
+}
 </style>
 
 <div class="gallery-container">
@@ -43,6 +49,14 @@ permalink: /galleries/
       {% endif %}
       <div class="gallery-item-title">{{ gallery.title }}</div>
     </a>
+    <div class="debug-info">
+      <p>Preview Image: {{ gallery.preview_image }}</p>
+      <p>Gallery Path: {{ gallery.gallery_path }}</p>
+      <p>Number of images: {{ image_files.size }}</p>
+      {% if image_files.size > 0 %}
+        <p>First image: {{ first_image.path }}</p>
+      {% endif %}
+    </div>
   </div>
 {% endfor %}
 </div>
