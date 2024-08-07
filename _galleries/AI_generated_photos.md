@@ -1,6 +1,5 @@
 ---
 title: AI Generated Photos of me
-description: "AI Generated Photos"
 gallery_path: /images/All AI images
 layout: gallery
 preview_image: /images/All AI images/AbstractImageAI17.png
