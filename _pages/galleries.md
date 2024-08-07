@@ -15,8 +15,9 @@ permalink: /galleries/
   box-sizing: border-box;
 }
 .gallery-item img {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
 }
 .gallery-item-title {
   text-align: center;
@@ -29,7 +30,13 @@ permalink: /galleries/
 {% for gallery in site.galleries %}
   <div class="gallery-item">
     <a href="{{ gallery.url | relative_url }}">
-      <img src="{{ gallery.image }}" alt="{{ gallery.title }}">
+      {% assign image_files = site.static_files | where_exp: "file", "file.path contains gallery.gallery_path" %}
+      {% if image_files.size > 0 %}
+        {% assign first_image = image_files | first %}
+        <img src="{{ first_image.path | relative_url }}" alt="{{ gallery.title }}">
+      {% else %}
+        <div style="width: 100%; height: 300px; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">No Image</div>
+      {% endif %}
       <div class="gallery-item-title">{{ gallery.title }}</div>
     </a>
   </div>
