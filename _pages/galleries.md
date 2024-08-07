@@ -30,12 +30,16 @@ permalink: /galleries/
 {% for gallery in site.galleries %}
   <div class="gallery-item">
     <a href="{{ gallery.url | relative_url }}">
-      {% assign image_files = site.static_files | where_exp: "file", "file.path contains gallery.gallery_path" %}
-      {% if image_files.size > 0 %}
-        {% assign first_image = image_files | first %}
-        <img src="{{ first_image.path | relative_url }}" alt="{{ gallery.title }}">
+      {% if gallery.preview_image %}
+        <img src="{{ gallery.preview_image | relative_url }}" alt="{{ gallery.title }}">
       {% else %}
-        <div style="width: 100%; height: 300px; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">No Image</div>
+        {% assign image_files = site.static_files | where_exp: "file", "file.path contains gallery.gallery_path" %}
+        {% if image_files.size > 0 %}
+          {% assign first_image = image_files | first %}
+          <img src="{{ first_image.path | relative_url }}" alt="{{ gallery.title }}">
+        {% else %}
+          <div style="width: 100%; height: 300px; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">No Image</div>
+        {% endif %}
       {% endif %}
       <div class="gallery-item-title">{{ gallery.title }}</div>
     </a>
