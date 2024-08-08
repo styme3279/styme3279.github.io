@@ -4,7 +4,7 @@ title: Mathematical Logic
 permalink: /page/Mathematical_logic/
 nav_exclude: true
 ---
-Here are some resources for learning more about mathematical logic. I took on the order of 4 courses on this field at Cambridge (3 of which were in Part III), and fortunately got the opportunity to write an essay on a topic in the field (try to imagine the nichest topic that could possibly exist in one of the nichest fields of mathematics, and go *even nicher*!) In any case, I'm naively hopeful that someone might take an interest in this page to some degree, since I spent approximately a year's worth of rather intense academic time working on these things. I guess it pales in comparison to a PhD.
+Here are some resources for learning more about mathematical logic. I took on the order of 4 courses on this field at Cambridge (3 of which were in Part III), and fortunately got the opportunity to write an essay on a topic in the field (try to imagine the nichest topic that could possibly exist in one of the nichest fields of mathematics, and go *even nicher*!) In any case, I'm naively hopeful that someone might take an interest in this page to some degree, since I spent approximately a year's worth of rather intense academic time working on these things. Oh well, I guess it pales in comparison to a PhD.
 
 ## Logic and Set Theory
 
@@ -20,5 +20,8 @@ I think the completeness and compactness theorems are definitely up there (altho
 As a first introduction to ordinals, this is heavy-going but great. A particular highlight would be the proof that the collection of ordinals don't form a set, and Hartogs' Lemma. Also this forms the basis of almost all future set theory, and serves a great foundation to work from.
 
 #### Cardinals
-The course is pretty light on cardinals. There's only a couple of pages that discuss them. The course arguably justifies itself here, since it's hard to say anything about cardinals beyond the obvious things (thanks a lot $$2^{\aleph_{0}}$$). Although I feel like König's theorem probably could have been introduced and proven (especially if you're gonna mention cardinal exponentiation, since that's just about the only thing we *can* say about cardinal exponentiation).
+The course is pretty light on cardinals. It basically tells you what an aleph number is, and how addition and multiplication differs from ordinals. It's argubaly justified, since it's hard to say anything about cardinals beyond the obvious things (thanks a lot $$2^{\aleph_{0}}$$). Although I feel like König's theorem probably could have been introduced and proven, especially if you're gonna mention cardinal exponentiation, since that's just about the only thing we *can* say about cardinal exponentiation.
+
+#### Basic Set Theory
+If you want to really *understand* the axioms of $$\textstyle ZFC$$, this is probably the way to go. If you want additional philosophical information, the obvious resource is Maddy's [*Believing the Axioms*](https://www.cs.umd.edu/~gasarch/BLOGPAPERS/belaxioms1.pdf). A cool unexpectedly useful result is probably Mostowski's collapsing theorem, and I suppose $$\in$$-induction, but this is really the axiom of foundation in a trenchcoat.
 
