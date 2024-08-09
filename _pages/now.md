@@ -3,8 +3,7 @@ layout: page
 title: Now
 permalink: /now/
 ---
-Currently I am living in London, working at the [LISA](https://www.safeai.org.uk) offices. Does LaTeX work here $$\sqrt{3}$$. Do formulas work 
+Currently I am living in London, working at the [LISA](https://www.safeai.org.uk) offices.
 
-$$ \int_{0}^{2} \frac{x^{3}}{4} dx$$
-
-The above is a formula.
+What I'm currently listening to 'On Repeat' according to spotify (accuracy dubious, but it's directionally correct):
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EpnnRfJrF4Nnq?utm_source=generator" width="100%" height="380" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowFullScreen></iframe>
