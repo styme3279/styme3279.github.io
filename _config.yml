@@ -39,8 +39,6 @@ collections:
 
 kramdown:
   math_engine: katex
-plugins:
-  - mathjax
 
 exclude:
   - Gemfile
