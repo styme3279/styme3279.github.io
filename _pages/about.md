@@ -4,10 +4,10 @@ title: About
 permalink: /about/
 ---
 
-<div style="display: flex; align-items: flex-start;">
-    <img src="/images/Photo_of_James.jpg" alt="A photo of me" class="about-image" style="margin-right: 15px; max-width: 30%; height: auto;">
+<div style="float: left; width: 150px; margin-right: 15px; border-radius: 50%;">
+  <img src="/path-to-your-image.jpg" alt="Your Name" style="width: 100%; border-radius: 50%;">
 </div>
-
+  
 ## About Me
 
 Hi, I'm James. I studied Mathematics at Cambridge, graduating in 2024 with a BA and MMath degree. While I was there, I mostly enjoyed logic and algebra, although I gained familiarity with virtually all of pure mathematics, and a decent chunk of the purer side of statistical mathematics (when it comes to applied mathematics, my knowledge gets choppier). 
