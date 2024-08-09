@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 <div style="position: relative;">
-    <img src="/path/to/your-image.jpg" alt="Your Name" class="about-image">
+    <img src="/images/Photo_of_James.jpg.jpg" alt="A photo of me" class="about-image">
 </div>
 
 ## About Me
