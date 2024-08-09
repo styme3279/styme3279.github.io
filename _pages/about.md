@@ -4,8 +4,8 @@ title: About
 permalink: /about/
 ---
 
-<div style="float: left; width: 150px; margin-right: 15px; border-radius: 50%;">
-  <img src="/images/Photo_of_James.jpg" alt="Your Name" style="width: 100%; border-radius: 50%;">
+<div style="float: left; width: 150px; margin-right: 15px;">
+  <img src="/images/Photo_of_James.jpg" alt="Your Name" style="width: 100%;">
 </div>
 
 ## About Me
