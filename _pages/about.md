@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-<div style="position: relative; float: left; margin-right: 15px;">
+<div style="float: left; margin-right: 15px;">
     <img src="/images/Photo_of_James.jpg" alt="A photo of me" class="about-image">
 </div>
 
