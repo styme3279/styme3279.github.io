@@ -4,7 +4,7 @@ title: Mathematical Logic
 permalink: /page/Mathematical_logic/
 nav_exclude: true
 ---
-Here are some resources for learning more about mathematical logic. I took on the order of 4 courses on this field at Cambridge (3 of which were in Part III), and fortunately got the opportunity to write an essay on a topic in the field (try to imagine the nichest topic that could possibly exist in one of the nichest fields of mathematics, and go *even nicher*!) In any case, I'm naively hopeful that someone might take an interest in this page to some degree, since I spent approximately a year's worth of rather intense academic time working on these things. Oh well, I guess it pales in comparison to a PhD.
+Here are some resources for learning more about mathematical logic. I took on the order of 4 courses on this field at Cambridge (3 of which were in Part III), and fortunately got the opportunity to write an essay on a topic in the field (try to imagine the nichest topic that could possibly exist in one of the nichest fields of mathematics, and go *even nicher*!) In any case, I'm naively hopeful that someone might take an interest in this page to some degree, since I spent approximately a year's worth of rather intense academic time working on these things.
 
 ## Logic and Set Theory
 
@@ -70,5 +70,86 @@ I was glad to get to learn about this in a proper course in Cambridge, as oppose
 #### Generalized completeness theorem
 
 This section basically explains how the completeness theorem all the way back in Logic and Set Theory is actually a special case of a general theorem on Heyting algebras (where the law of the excluded middle forces the Hyeting algebra to be a Boolean algebra, and then everything becomes way easier). So we can get completeness results in Heyting algebras which will then apply to intuitionistic logic (obviously *slightly* weaker, but not as much as you might think!).
+
+## Large Cardinals
+
+In terms of pure content, this is probably the most fascinating mathematical logic course I took. Its subject matter is essentially cardinals that are so big that we can't prove their existence in $$\mathrm{ZFC}$$ (since their existence would entail the consistency of $$\mathrm{ZFC}$$). The idea itself should intrigue anyone with a passing interest in set theory, and the lecturer was fantastic at giving intuitions for the types of object we're dealing with. The most interesting high-level takeaway I got from this course was that virtually every property which makes a cardinal "*too large*" was a property of $$\omega$$. So there is some mathematical justification for the intuition that the conceptual leap from the finite to the infinite is on the same order of magnitude as that from the infinite to the unprovably *gargantuan*. But even this doesn't do justice to the leap from the finite to the infinite, as the large cardinals we define tend to only have a few properties that are analogous to those between the finite and $$\omega$$ — $$\omega$$ itself has all of these properties right away, in one big jump.
+
+### Inaccessible Cardinals and Consistency Strength
+
+The conceptual foundations of the course are laid here. We suppose the existence of an uncountable *regular*, *strong-limit* cardinal $$\kappa$$, and show that these properties entail that $$V_{\kappa}$$ models $$\mathrm{ZFC}$$ (along with second-order replacement), so there is a transitive set model of set theory, and so $$\mathrm{ZFC}$$ is consistent. Therefore $$\mathrm{ZFC}$$ cannot prove the existence of such a cardinal (due to [Gödel's Second Incompleteness Theorem](https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems#Second_incompleteness_theorem)). There are a few other large cardinals in this section, namely weakly inaccessible cardinals (which are the same as inaccessible cardinals under the continuum hypothesis), and worldly cardinals.
+
+### Intro to Measurable Cardinals
+
+We generalize another property of $$\omega$$, that there is a non-principal ultrafilter on it. However, first we mess around with measures (in the probability theory sense of the word). I'm glad we messed around with measures, but it probably wasn't a necessary detour (unless someone had never seen an ultrafilter before, but even then...). 
+
+### Large Cardinals for Infinitary Logic
+
+Languages where you can take finitely many conjunctions and disjunctions, and quantify over finitely many objects have a completeness property for theories containing finitely many sentences (as mentioned in the last two courses). But suppose instead we took infinite-sized conjunctions and disjunctions, and quantified over infinitely many objects with universal or existential quantifiers — would these be complete for theories of infinitely many sentences? Well, not according to $$\mathrm{ZFC}$$, but that shouldn't stop us. If we suppose that such a cardinal existed, we get *strongly compact* cardinals, which actually entail measurability (by a nifty argument involving an application of completeness to a language describing an ultrafilter). Weakly compact cardinals are a more combinatorially flavoured object, but it turns out that these are equivalent to a weaker form of the completeness condition we imposed above (although this is stated without proof).
+
+### Taking the Ultrapower of the Universe
+
+One of the coolest course subsection titles in all of Cambridge mathematics. This essentially refers to the fact that, since measurable cardinals have an ultrafilter on them, we can take an Ultrapower of a model of set theory (assuming that there is an inaccessible above the measurable cardinal). This was pretty cool, although this was definitely where the course really got going and required an engaged brain — also circuitously very useful for my essay (although all of this content was, since my essay was essentially about a certain type of large cardinal property).
+
+### Reflection and bigger cardinals
+
+After taking the ultrapower of the universe, we're introduced to the idea of reflection, which is a consequence of the Keisler Extension Property (which I won't explain here). Essentially, it boils down to the fact that if we have a cardinal $$\kappa$$ such that $$V_{\kappa$$ is a model of set theory, then there is an elementary extension of this model which will model all the same sentences. Then since this model contains $$\kappa$$, anything which it believes about $$\kappa$$, $$V_{\kappa}$$ must believe about arbitrarily large cardinals (below $$\kappa$$, obviously, since $$V_{\kappa}$$ can't see $$\kappa$$ itself). This allows us to reflect certain properties of $$\kappa$$ back to cardinals which form a cofinal set of $$\kappa$$ (for example, inaccessibility, weak comapctness, or even measurability).
+
+### Cardinals that are too big
+
+I'm very glad this section was included. It definitely didn't have to be. Essentially, we keep taking larger and larger cardinals, none of which $$\mathrm{ZFC}$$ can prove. So we wonder, do any of these things actually exist? Do they lead to a contradiction. Well yes, if you go big enough. We impose a property on a cardinal which seems natural enough from some of the discussions about measurable cardinals, but it turns out no such cardinal can exist. These are called Reinhardt cardinals, and they violate a corollary of a result of Kunen that there can be no non-trivial elementary embedding from $$V \to V$$ (the corollary is given by taking $$V$$ to be $$V_{\lambda}$$, so it is essentially immediate). However, there are other large cardinals which we believe to be inconsistent, but haven't proven yet. 
+
+I wonder if some of the more "relaxed" ones will someday be proven inconsistent. I kind of hope not, since it's nice to have a rich consistency structure. I also believe they probably won't be, and if I'm remembering correctly, I think there's relatively decent evidence that these sorts of things should exist. The theorem prover Lean, for example, is actually stronger than $$\mathrm{ZFC}$$, it has the consistency strength of $$\mathrm{ZFC} +$$"There are $$\omega$$ many (in the ordinal sense) inaccessible cardinals," if I remember correctly.
+
+## Forcing and the Continuum Hypothesis
+
+I'm very glad I got the opportunity to take this course. While large cardinals might have been my favourite in a sense, it is basically an exposition of a somewhat niche (but deeply fascinating and rich) field of study. On the other hand, almost every mathematician has heard of forcing, and it's great to be able to say that I have a rudimentary understanding of how Cohen showed that the Continuum Hypothesis is independent of $$\mathrm{ZFC}$$ — and in so doing, seemingly establishing a renaissance of set theory that continues to this day, utilising various different forcing methods to gain independence results, even on some [matters of relevance to the rest of mathematics](https://en.wikipedia.org/wiki/List_of_statements_independent_of_ZFC). The title of this course is Forcing and the Continuum Hypothesis, but what was essentially the same course in prior years was named "Topics in Set Theory," and this does feel like a more appropriate name. I think this course focused on forcing slightly more than the prior course (partly because it didn't need to touch on large cardinals, as that course was already there), but there was still a lot that fits better in the category: "Other set theory results."
+
+### Levy Hierarchy
+
+This had already been lectured in a more general manner in the model theory course. It is essentially identical to the commentary in that course on quantifier-free sentences (and how existentially- and universally-quantified sentences are preserved in superstructres and substructures respectively).
+
+### Cardinal Arithmetic
+
+I think this was a pretty good section. It is in some sense surprising that this arises in this course instead of the Large Cardinals course. However, it shouldn't be! This is because how much we can say about cardinal arithmetic is deeply tied to the truth or falsity of the Continuum Hypothesis (inasmuch as we are talking about cardinal exponentiation).
+
+### Gödel Functions and Construtibility
+
+This proof worried me a lot. It was *so* long, and *so* seemingly arbitrary that it seemed to bode poorly for the rest of the course. I needn't have worried, as it's probably the worst proof in the course (depending on whether you count "proving forcing works" as one big theorem, or a lot of smaller theorems, and I think it's probably the latter). I suppose sometimes one just needs to show that every quantifier-free sentence in set theory can be written using one of 10 different basic functions. I think this proof should've just been omitted to make more time at the end of the course when things were actually interesting, but I get why it was included.
+
+### L - the Constructible Universe
+
+I love $$L$$. Gödel was really onto a winner here. You just build up set theory in the obvious way, take an $$\mathrm{Ord}$$-sized union (is $$Ord$$ a size? No? *Morally* an $$\mathrm{Ord}$$-sized union then) over your constructed objects, take that class, and you can show it models set theory. Not just that, but the continuum hypothesis. However, $$V\neq L$$, and I won't countenance anyway who believes otherwise — do you *want* to live in the most boring possible world?
+
+### Forcing
+
+The meat of the course. I'll break this down into subsections, since there's too much to say about it generally.
+
+#### Dense sets and Generic sets
+
+This felt pretty poorly motivated. That being said, forcing is hard, and it is really hard to see how it all clicks into place until it *all* clicks into place, and you have to start somewhere. I suppose dense and generic sets are where you often start, since they're the most concrete *things you actually work with* in forcing when you try to do a forcing prood.
+
+#### Names
+
+This was also poorly motivated to me. It wasn't until very near the end of revising this for exams that I actually understood what these were. Nevertheless, I got there eventually. Possibly a skill issue. Also the nice-names argument is a candidate for the second-worst proof (after Gödel functions) in this course.
+
+#### Generic Model Theorem
+
+At first I reacted pretty strongly against this. I think this was just an aesthetic reaction to the lecturer's love of precise notation vs my love of intuition (which was an issue throughout the course). But we are doing maths here, so it's not *unacceptable* or anything. When I revisited it however, I thought it was mostly explained fine. It just takes some time to see the picture click together. It's not like he didn't *try* to motivate it. Anyway, it's very cool that you can take a model and extend it by a generic set and get a new model that is provably different (but not too different).
+
+#### Independence results
+
+This is the big one. I liked how it was shown that cardinals and cofinalities are preserved under forcings by generic extensions. Countable chain conditions et cetera were at least comprehensible, and the combinatorially flavoured arguments worked well with the style of argument I'd come to expect about cardinals from the Large Cardinals course, so it wasn't too difficult to understand (the second or third time I went through it, so not easy to understand either). Then also $$\mathrm{CH}$$ is independent of $$\mathrm{ZFC}$$. Damn. Crazy.
+
+#### Other Forcing Methods
+
+It was cool that we got the time to see some of the other forcing methods that are available (even if they were all pretty standard stuff, no crazy tree-forcings, that would have to wait for my Essay). Also cool that we can do weird and wonderful things to the whole "continuum function," and as long as they don't violate the "obvious" restrictions, they're good to go and will be consistent with $$\mathrm{ZFC}$$.
+
+#### Some final thoughts on Forcing
+
+I think I probably want to write something more substantial about forcing, just for myself if not for anyone else. It seems like there's no truly good pedagogical material online about forcing, and I doubt that I'll be the first person to do it justice (more accurately, it all looks terrible before you've learnt forcing, and then afterwards you understand what they're all talking about and it becomes very clear — but this is not the purpose of pedagogical material!). Anyway, I think I like the analogy with Galois extensions, but it was bandied about a bit haphazardly by the lecturer (or at least what I wrote down in my notes was haphazard). It's a good intuition, but an even better intuition when it becomes clearer how they diverge. Fields are very simple objects, so extending them is not too hard. They are also natural things that we can imagine and are used to working with, so going from $$\mathbb{Q}$$ to $$\mathbb{Q}[\sqrt{2}]$$ is not a large conceptual leap (if it is even a leap *at all* by the time you're learning Galois theory). This is not the case for set theory. Models of $$\mathrm{ZFC}$$ are *strange* things (apart from $$L$$ which is beautiful, as mentioned before), so extending them is correspondingly stranger, because you are taking an object which you only understand as [the blind men understand the elephant](https://en.wikipedia.org/wiki/Blind_men_and_an_elephant), and from it constructing another such object. The axioms of set theory are also just *obviously* going to be much stronger than those of a field, so preserving them is going to be more demanding. You are going to have to come up with wacky objects and definitions that *are* going to be implied indirectly by the axioms (dense sets, genericity), but very few people can see this before-the-fact (this is why Paul Cohen won a Fields medal). Nevertheless, fundamentally — conceptually — you are doing the same thing as extending a field, it's just going to be much harder.
+
+
+
 
 
