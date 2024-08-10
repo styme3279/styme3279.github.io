@@ -25,6 +25,29 @@ If you want to really *understand* the axioms of $$\mathrm{ZFC}$$, this is proba
 
 A cool unexpectedly useful result is probably Mostowski's collapsing theorem. It looks like a  and I suppose $$\in$$-induction (but this is really the axiom of foundation in a trenchcoat).
 
-## Model Theory and Non-Classical Logics
+## Model Theory and Non-Classical Logic
 
+The second mathematical logic course I took was in Part III. Overall I enjoyed this course a decent amount, and it made me think that maybe model theory was the thing about mathematical logic I liked most (this changed after I did more set theory, although I still enjoy model theory). It was by far the most algebraically-flavoured mathematical logic course. I did take $$\LaTeX$$ notes for this course, but they're very scruffy. [Here they are](/pdf_files/Model%20Theory%20and%20Nonclassical%20Logics.pdf)
+
+### Quantifier-free sentences
+
+Quantifier-free sentences appear early and often in this course. Upon first seeing them, I had no idea how pivotal they would end up being to the rest of (the model theory section of) this course. It remains very unintiuitive to me that for any structure $$M$$ in model theory, any superstructure or substructure of $$M$$ must satisfy the same quantifier-free sentences, but it's true!
+
+### Quantifier Elimination
+
+So much on quantifier elimination. Don't get me wrong, I get it, but the big theorem on equivalent statements to quantifier elimination has so many different, seemingly often irrelevant details. For example, I once looked up what kinds of structures don't have the *amalgamation property*, and apparently it's been challenging to even find such structures. I think this provides some justification for the view of mathematical logic as messing around with arbitrary definitions that rarely, if ever, occur in mathematical structures we would actually care about. Nevertheless, eliminating quantifiers is important, and since model-completeness isn't quite enough, we have to deal with the amalgamation property.
+
+### Tarski-Vaught, the method of diagrams, and Skolemisation
+
+The Tarski-Vaught test was very useful so deserves a mention. I also enjoyed that the majority of a proof of such a useful test is just messing around with the details of establishing that $$M$$ is indeed the domain of a structure $$\mathcal{M}$$.
+
+The method of diagrams was also very useful, one of the few results that actually got brought up in another course (even if it was another mathematical logic course). 
+
+Finally, Skolemisation was really fundamental to my essay. It's another thing that feels very useless initially, but you quickly realize how useful it can be. Whether for proving the downwards Löwenheim-Skolem theorem, or for the Ehrenfeucht-Mostowski functor (and thereby getting structures with huge automorphism groups), just building a bigger language that has constants corresponding to every sentence is an simple idea that goes a long way.
+
+### Ultraproducts
+
+This was possibly my single favourite part of the course. It would be difficult to do it justice without delving into too many technical details. The lecturer also taught this in an interesting parliamentary analogy, where we want to build a new structure out of many other structures, and we want a "Bill" (i.e. some sentence $$\varphi$$) to pass (i.e. hold in the new structure) if enough of the smaller structures "vote" for it. This analogy was made even more interesting by a problem on the second (or possibly third, I don't quite remember) example sheet, where you can actually get around Arrow's impossibility theorem if you have infinitely many voters, since Arrow's impossibility theorem boils down to any *ultrafilter* necessarily being *principal* (i.e. there is a *dictator voter*) on a finite set. However, if you assume the axiom of choice, then with an infinite set of voters, you can actually construct a *nonprincipal ultrafilter*, and thereby get around the impossibility result.
+
+### 
 
