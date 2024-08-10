@@ -47,7 +47,28 @@ Finally, Skolemisation was really fundamental to my essay. It's another thing th
 
 ### Ultraproducts
 
-This was possibly my single favourite part of the course. It would be difficult to do it justice without delving into too many technical details. The lecturer also taught this in an interesting parliamentary analogy, where we want to build a new structure out of many other structures, and we want a "Bill" (i.e. some sentence $$\varphi$$) to pass (i.e. hold in the new structure) if enough of the smaller structures "vote" for it. This analogy was made even more interesting by a problem on the second (or possibly third, I don't quite remember) example sheet, where you can actually get around Arrow's impossibility theorem if you have infinitely many voters, since Arrow's impossibility theorem boils down to any *ultrafilter* necessarily being *principal* (i.e. there is a *dictator voter*) on a finite set. However, if you assume the axiom of choice, then with an infinite set of voters, you can actually construct a *nonprincipal ultrafilter*, and thereby get around the impossibility result.
+This was possibly my single favourite part of the course. It would be difficult to do it justice without delving into too many technical details. The lecturer also taught this in an interesting parliamentary analogy, where we want to build a new structure out of many other structures, and we want a "Bill" (i.e. some sentence $$\varphi$$) to pass (i.e. hold in the new structure) if enough of the smaller structures "vote" for it. This analogy was made even more interesting by a problem on the second (or possibly third, I don't quite remember) example sheet, where you can actually get around [Arrow's impossibility theorem](https://en.wikipedia.org/wiki/Arrow%27s_impossibility_theorem) if you have infinitely many voters, since Arrow's impossibility theorem boils down to any [*ultrafilter*](https://en.wikipedia.org/wiki/Ultrafilter) necessarily being *principal* (i.e. there is a *dictator voter*) on a finite set. However, if you assume the axiom of choice, then with an infinite set of voters, you can actually construct a *nonprincipal ultrafilter*, and thereby get around the impossibility result. Łoś' theorem, and that it implies the axiom of choice when taken together with the Boolean Prime Ideal Theorem was also a highlight.
 
-### 
+### Types
+
+No, not those kinds of types, they'll come later. Learning about these were relatively cool, since they're important for [non-standard analysis](https://en.wikipedia.org/wiki/Nonstandard_analysis). Also this section explains the link between compactness in logic and compactness in topology via the Stone space (which is a compact, totally disconnected topological space on the set of $$n$$ types of $$\cal{M}$$ over $$A$$). Also Shelah's omitting types theorem is a cool idea.
+
+### Indiscernibles
+
+I suppose I should like this section, since it was *so* important for my essay. I like the idea of indiscernibles, but did feel like the qualities of the Ehrenfeucht-Mostowski functor weren't explained in the clearest way here (I wasn't totally aware until e.g. the third reading what we were assuming and what we were even trying to prove, but to some extent this is a skill issue). From what I can remember it felt a little rushed
+
+### Non-Classical Logic
+
+#### Intuitionistic Logic
+
+This was super interesting. Diaconescu's theorem was great: it's surprising but retrospectively totally obvious that the Axiom of Choice will give you the law of the excluded middle if you assume it in an (otherwise) intuitionistic set theory.
+
+#### Simply-typed Lambda Calculus
+
+I was glad to get to learn about this in a proper course in Cambridge, as opposed to needing to work in formalisation outside of courses to get any information on this. It was interesting to learn about $$\beta$-reduction and all the typability results. But fundamentally the most interesting thing was getting a feel for the intuition that proofs in intuitionistic logic *really are* the same thing as programmes which take in premises and output proofs of the conclusion.
+
+#### Generalized completeness theorem
+
+This section basically explains how the completeness theorem all the way back in Logic and Set Theory is actually a special case of a general theorem on Heyting algebras (where the law of the excluded middle forces the Hyeting algebra to be a Boolean algebra, and then everything becomes way easier). So we can get completeness results in Heyting algebras which will then apply to intuitionistic logic (obviously *slightly* weaker, but not as much as you might think!).
+
 
