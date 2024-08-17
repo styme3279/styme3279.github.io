@@ -4,7 +4,7 @@ title: Mathematical Logic
 permalink: /interest/Mathematical_logic/
 nav_exclude: true
 ---
-Here are some resources for learning more about mathematical logic. I took on the order of 4 courses on this field at Cambridge (3 of which were in Part III), and fortunately got the opportunity to write an essay on a topic in the field (try to imagine the nichest topic that could possibly exist in one of the nichest fields of mathematics, and go *even nicher*!) In any case, I'm naively hopeful that someone might take an interest in this page to some degree, since I spent approximately a year's worth of rather intense academic time working on these things, although this is written for someone who's willing to read through notes, or already has a passing familiarity with the topic.
+Here are some resources for learning more about mathematical logic. I took on the order of 4 courses on this field at Cambridge (3 of which were in Part III), and fortunately got the opportunity to write an essay on a topic in the field (try to imagine the nichest topic that could possibly exist in one of the nichest fields of mathematics, and go *even nicher*!) In any case, I'm naively hopeful that someone might take an interest in this page to some degree, since I spent approximately a year's worth of rather intense academic time working on these things, although this is written for someone who's willing to read through some of the notes I've linked or who already has a passing familiarity with the topic (or ideally both!).
 
 ## Logic and Set Theory
 
