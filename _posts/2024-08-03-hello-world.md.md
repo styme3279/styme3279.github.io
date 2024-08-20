@@ -14,7 +14,7 @@ This is a "Hello world" post. I'm using to test that inline $$\LaTeX$$ works.
 I'm also checking that formulas are displayed correctly:
 
 $$\begin{align*}
-    \int_{0}^{\pi} x\sin(x) &= \left[-x\cos(x)\right]_{0}^{\pi} + \int_{0}^{\pi} \cos(x) \tag{Int. by parts}\\
+    \int_{0}^{\pi} x\sin(x) dx &= \left[-x\cos(x)\right]_{0}^{\pi} + \int_{0}^{\pi} \cos(x) dx \tag{Int. by parts}\\
     &= \left[-x\cos(x) + \sin(x) \right]_{0}^{\pi}\\
     &= \left[\pi\right] - \left[0\right]\\
     &=\pi
