@@ -41,6 +41,7 @@ kramdown:
   math_engine: katex
 plugins:
   - mathjax
+  - jekyll-seo-tag
 
 exclude:
   - Gemfile
