@@ -8,9 +8,7 @@ permalink: /about/
   <img src="/images/Photo_of_James.jpg" alt="Your Name" style="width: 100%;">
 </div>
 
-## About Me
-
-Hi, I'm James. I studied Mathematics at Cambridge, graduating in 2024 with a BA and MMath degree. While I was there, I mostly enjoyed logic and algebra, although I gained familiarity with virtually all of pure mathematics, and a decent chunk of the purer side of statistical mathematics (when it comes to applied mathematics, my knowledge gets choppier). 
+Hi, I'm James. I studied Mathematics at Cambridge, graduating in 2024 with a BA and MMath degree. While I was there, I mostly studied logic and algebra, although I gained familiarity with virtually all of pure mathematics, and a decent chunk of the purer side of statistical mathematics (when it comes to more applied mathematics, my knowledge gets choppier). 
 
 I'm pretty concerned about AI safety, and think other people should take very seriously that we are training larger and larger gray-box models that we don't really understand, and which seem to be rapidly gaining in intelligence (whatever intelligence is). To this end, I did [SERI MATS](https://www.matsprogram.org/) under John Wentworth in 2022. This experience made me both more pessimistic and more optimistic — pessimistic about our chances, optimistic about my ability to try to improve them.
 
