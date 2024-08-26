@@ -13,15 +13,11 @@ First, I'll prove the first isomorphism theorem (in case you aren't already fami
 
 **Statement**: If you have a group homomorphism $$\phi : A \to B$$, then let $$K = \Ker(\phi)$$. Then $$A/K \cong \Im(\phi) \leq B$$.
 
-**Proof**: Define $$\theta$$ on the cosets of $$K$$ in $$A$$ such that $$\theta(gK) = \phi(g)$$. This is well-defined, since if $$gK = hK$$ (as sets), then $$h^{-1}gK = K$$, so $$h^{-1}g \in K$$. Therefore, we know that 
-
-$$\begin{align*} \phi(h^{-1}g) &= e \\ \phi(h) &= \phi(g),\end{align*}$$
-
-so in particular $$\theta(hK) = \theta(gK)$$ when $$gK = hK$$. 
+**Proof**: Define $$\theta$$ on the cosets of $$K$$ in $$A$$ such that $$\theta(gK) = \phi(g)$$. This is well-defined, since if $$gK = hK$$ (as sets), then $$h^{-1}gK = K$$, so $$h^{-1}g \in K$$. Therefore, we know that $$\phi(h^{-1}g) = e$$, so $$\phi(h) &= \phi(g)$$, so in particular $$\theta(hK) = \theta(gK)$$ when $$gK = hK$$. 
 
 Then we need to show $$\theta$$ is an isomorphism. We begin by showing it is surjective. If $$h \in \im(\phi)$$, then for some $$g \in A$$, we have $$\phi(g)=h$$. So $$\theta(gK) = \phi(g)=h$$. So $$\theta$$ is surjective. 
 
-Then also we need to show that $$\theta$$ is injective. If $$\theta(gK) = \theta(hK)$$, then $$\phi(g) = \phi(h)$$, so $$h^{-1} \cdot g \in K$$. So 
+Then also we need to show that $$\theta$$ is injective. If $$\theta(gK) = \theta(hK)$$, then $$\phi(g) = \phi(h)$$, so $$h^{-1}g \in K$$. So 
 
 $$\begin{align*} hK &= h \cdot h^{-1}gK\\ &= gK. \end{align*}$$
 
