@@ -13,7 +13,7 @@ First, I'll prove the first isomorphism theorem (in case you aren't already fami
 
 **Statement**: If you have a group homomorphism $$\phi : A \to B$$, then let $$K = \mathrm{ker}(\phi)$$. Then we have that $$A/K \cong \mathrm{im}(\phi) \leq B$$.
 
-**Proof**: Define $$\theta$$ on the cosets of $$K$$ in $$A$$ such that $$\theta(gK) = \phi(g)$$. This is well-defined, since if $$gK = hK$$ (as sets), then $$h^{-1}gK = K$$, so $$h^{-1}g \in K$$. Therefore, we know that $$\phi(h^{-1}g) = e$$, so $$\phi(h) = \phi(g)$$, so in particular $$\theta(hK) = \theta(gK)$$ when $$gK = hK$$. 
+**Proof**: Define $$\theta : A/K \to B$$ such that $$\theta(gK) = \phi(g)$$. This is well-defined, since if $$gK = hK$$ (as sets), then $$h^{-1}gK = K$$, so $$h^{-1}g \in K$$. Therefore, we know that $$\phi(h^{-1}g) = e$$, so $$\phi(h) = \phi(g)$$, so in particular $$\theta(hK) = \theta(gK)$$ when $$gK = hK$$. 
 
 To show that $$\theta$$ is an isomorphism, we write $$\theta(gKhK) = \theta(ghK)$$ (since $$K$$ is a normal subgroup, $$hK=Kh$$), and $$\theta(ghK) = \phi(gh)$$ by definition, which is precisely $$\theta(gK)\theta(hK)$$.
 
