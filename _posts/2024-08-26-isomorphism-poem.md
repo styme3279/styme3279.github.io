@@ -55,7 +55,7 @@ equals $$\phi(gh)$$, by our definition's legality.<br>
 Which is $$\phi(g)$$ times $$\phi(h)$$, since $$\phi$$ is given<br>
 to be exactly a group homomorphism.<br>
 Then this we can write as $$\theta(gK)$$ times $$\theta(hK)$$<br>
-which makes it exactly a homom, wouldn't you say?<br>
+which makes $$\theta$$ a homom, wouldn't you say?<br>
 
 What's more, the image of $$\phi$$ must be the image of $$\theta$$<br>
 I don't want to be just a definition repeater<br>
