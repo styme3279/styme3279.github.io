@@ -12,6 +12,8 @@ Currently I am living in London, working at the [LISA](https://www.safeai.org.uk
 
 <br>
 
+### Books
+
 Books I'm currently reading:
 
 - Fiction: *A Place of Greater Safety* - Hilary Mantel
@@ -27,6 +29,8 @@ If you see me in person and have any questions about any of these books, I'd be 
 ---
 
 <br>
+
+### Music
 
 <div style="float: left; margin-right: 20px; margin-bottom: 10px;">
     <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1EpnnRfJrF4Nnq?utm_source=generator" width="300" height="380" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowFullScreen></iframe>
