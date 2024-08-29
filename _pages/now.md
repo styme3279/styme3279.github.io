@@ -20,7 +20,7 @@ Books I'm currently reading:
 
 - Nonfiction: *An Introduction to Contemporary Metaethics* - Alexander Miller
 
-- Nonfiction Audiobook: *The Palestinian-Israeli Conflict: A Very Short Introduction*
+- Nonfiction Audiobook: *The Palestinian-Israeli Conflict: A Very Short Introduction* - Martin P. Bunton
 
 If you see me in person and have any questions about any of these books, I'd be happy to talk more about them.
 
