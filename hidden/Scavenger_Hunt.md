@@ -9,13 +9,17 @@ nav_exclude: false
 
 Here are the rules and tips for the scavenger hunt:
 
-- There are 10 points for each photo in the "mainline" scavenger hunt.
+- There are 10 points for each photo in the "mainline" scavenger hunt. Don't worry about getting every photo.
 
 - You're totally allowed to google things/ask strangers or museum staff or attendees for help!
 
 - You'll need to have someone who has data. If you can't submit photos, or anything else goes wrong then DM me on slack (which is "James Hindmarch").
 
 - There are 5 points for each of the bonus categories as you work your way through London, listed below.
+
+- Have fun with it. If you all really like a museum and don't mind as much about seeing the future ones, then spend some more time there.
+
+- Buy a Tesco meal-deal before you leave for Lunch. When I did this I got really hungry halfway through and couldn't find much to eat for cheap.
 
 <br>
 
