@@ -9,19 +9,21 @@ nav_exclude: false
 
 Here are the rules and tips for the scavenger hunt:
 
-- There are 10 points for each photo in the "mainline" scavenger hunt. Don't worry about getting every photo. Make sure the photos include at least one of your team mates (or yourself)!
+- There are **10 points** for each photo in the "mainline" scavenger hunt. Don't worry about getting every photo. Make sure the photos **include at least one of your team mates (or yourself)**!
 
-- When you submit your photos, make sure your email is included to receive the next clue.
+- When you submit your photos, **make sure your email is included** to receive the next clue.
 
-- You're totally allowed to google things/ask strangers or museum staff or attendees for help!
+- You're totally allowed to **google things**/ask strangers or museum staff or attendees for help!
 
-- You'll need to have someone who has data. If you can't submit photos, or anything else goes wrong then DM me on slack (which is "James Hindmarch").
+- You'll need to have someone who **has data**. If you can't submit photos, or **anything goes wrong then DM me on slack** (which is "James Hindmarch").
 
 - There are 5 points for each of the bonus categories as you work your way through London, listed below.
 
-- Have fun with it. If you all really like a museum and don't mind as much about seeing the future ones, then spend some more time there.
+- **Have fun with it**. If you all really like a museum and don't mind as much about seeing the future ones, then spend some more time there. This is meant to show you London, and the prizes aren't *that* great.
 
 - Buy a Tesco meal-deal before you leave for Lunch. When I did this I got really hungry halfway through and couldn't find much to eat for cheap.
+
+- At the end remember to come back for pizza 🍕!!
 
 <br>
 
@@ -31,7 +33,7 @@ Here are the rules and tips for the scavenger hunt:
 
 # Bonus Scavenger Hunt Items
 
-All of these are limited to one per team!
+All of these are **limited to one per team**! Don't worry about submitting them, we can just figure it out at the end.
 
 - A chicken shop blatantly ripping off "KFC"
 
@@ -67,6 +69,5 @@ So leave the desk, the time is now,<br>
 The Tower awaits—go make your vow.<br>
 Let history’s gates your path unfold,<br>
 Adventure calls, as tales are told.<br>
-
 
 
