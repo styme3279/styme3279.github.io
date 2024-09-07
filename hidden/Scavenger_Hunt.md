@@ -51,20 +51,20 @@ All of these are limited to one per team!
 
 Your first location:
 
-The journey starts, your quest begins,
-From where you work, to ancient things.
-Step outside and take your way,
-To where the **Tower** guards the day.
-
-Through bustling streets and London’s hum,
-The Thames will guide you as you come.
-To walls that whisper tales of old,
-Of crowns, and jewels, and secrets bold.
-
-So leave the desk, the time is now,
-The Tower awaits—go make your vow.
-Let history’s gates your path unfold,
-Adventure calls, as tales are told.
+The journey starts, your quest begins,<br>
+From where you work, to ancient things.<br>
+Step outside and take your way,<br>
+To where the **Tower** guards the day.<br>
+<br>
+Through bustling streets and London’s hum,<br>
+The Thames will guide you as you come.<br>
+To walls that whisper tales of old,<br>
+Of crowns, and jewels, and secrets bold.<br>
+<br>
+So leave the desk, the time is now,<br>
+The Tower awaits—go make your vow.<br>
+Let history’s gates your path unfold,<br>
+Adventure calls, as tales are told.<br>
 
 
 
