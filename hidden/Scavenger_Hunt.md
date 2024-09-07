@@ -37,7 +37,7 @@ All of these are **limited to one per team**! Don't worry about submitting them,
 
 - A chicken shop blatantly ripping off "KFC"
 
-- Any non-standard pedestrian crossing light (limited to one)
+- Any non-standard pedestrian crossing light
 
 - Overpriced avocado toast (At least £15)
 
@@ -51,7 +51,7 @@ All of these are **limited to one per team**! Don't worry about submitting them,
 
 - A pigeon inside a cafe or shop
 
-#### Start the Scavenger Hunt [here](https://docs.google.com/forms/d/e/1FAIpQLSeL-2YgWNK9Z_8cx-F3pOg9LgNJg06jKdjliDbYT1e5WwnSWg/viewform?vc=0&c=0&w=1&flr=0&usp=mail_form_link)
+### Start the Scavenger Hunt [here](https://docs.google.com/forms/d/e/1FAIpQLSeL-2YgWNK9Z_8cx-F3pOg9LgNJg06jKdjliDbYT1e5WwnSWg/viewform?vc=0&c=0&w=1&flr=0&usp=mail_form_link)
 
 Your first location:
 
