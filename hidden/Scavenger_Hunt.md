@@ -9,7 +9,7 @@ nav_exclude: false
 
 Here are the rules and tips for the scavenger hunt:
 
-- There are 10 points for each photo in the "mainline" scavenger hunt. Don't worry about getting every photo. Make sure the photos include at least one of your team mates!
+- There are 10 points for each photo in the "mainline" scavenger hunt. Don't worry about getting every photo. Make sure the photos include at least one of your team mates (or yourself)!
 
 - You're totally allowed to google things/ask strangers or museum staff or attendees for help!
 
