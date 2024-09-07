@@ -11,6 +11,8 @@ Here are the rules and tips for the scavenger hunt:
 
 - There are 10 points for each photo in the "mainline" scavenger hunt. Don't worry about getting every photo. Make sure the photos include at least one of your team mates (or yourself)!
 
+- When you submit your photos, make sure your email is included to receive the next clue.
+
 - You're totally allowed to google things/ask strangers or museum staff or attendees for help!
 
 - You'll need to have someone who has data. If you can't submit photos, or anything else goes wrong then DM me on slack (which is "James Hindmarch").
