@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Scavenger Hunt
-permalink: /challenge/Scavenger_Hunt/
-nav_exclude: true
+permalink: /scavenger-hunt/
+nav_exclude: false
 ---
 
 # Scavenger Hunt Rules
