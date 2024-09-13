@@ -20,7 +20,7 @@ Books I'm currently reading:
 
 - Nonfiction: *An Introduction to Contemporary Metaethics* - Alexander Miller
 
-- Nonfiction Audiobook: *The Palestinian-Israeli Conflict: A Very Short Introduction* - Martin P. Bunton
+- Nonfiction Audiobook: *Fifth Sun: A New History of the Aztecs* - Camilla Townsend (on the recommendation of [this book review](https://mattlakeman.org/2020/06/25/polygamy-human-sacrifices-and-steel-why-the-aztecs-were-awesome/)).
 
 If you see me in person and have any questions about any of these books, I'd be happy to talk more about them.
 

@@ -2,7 +2,7 @@
 
 layout: post
 title: "First Isomorphism Theorem Poem"
-categories: random
+categories: maths
 date: 2024-08-27 20:30:00 +0100
 tags: [maths, poems]
 comments: true
