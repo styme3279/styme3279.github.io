@@ -5,30 +5,70 @@ layout: default
   <header class="gallery-header">
     <h1 class="gallery-title">{{ page.title | escape }}</h1>
     {% if page.description %}
-      <p class="gallery-description">{{ page.description }}</p>
+    <p class="gallery-description">{{ page.description }}</p>
     {% endif %}
   </header>
 
   <div class="gallery-content">
     {{ content }}
-    
+
     {% if page.gallery_path %}
-      <div class="photo-grid">
-        {% assign image_files = site.static_files | where_exp: "file", "file.path contains page.gallery_path" %}
-        {% for image in image_files %}
-          <div class="photo-item">
-            <img src="{{ image.path | relative_url }}" alt="{{ image.name }}" loading="lazy">
-          </div>
-        {% else %}
-          <p>No images found in the specified gallery path.</p>
-        {% endfor %}
+    <div class="photo-grid">
+      {% assign image_files = site.static_files | where_exp: "file", "file.path contains page.gallery_path" %}
+      {% for image in image_files %}
+      <div class="photo-item">
+        <!-- Use optimized thumbnails -->
+        <img src="{{ image.path | relative_url }}" alt="{{ image.name }}" loading="lazy">
       </div>
+      {% else %}
+      <p>No images found in the specified gallery path.</p>
+      {% endfor %}
+    </div>
     {% else %}
-      <p>No gallery path specified.</p>
+    <p>No gallery path specified.</p>
     {% endif %}
   </div>
 </article>
+<style>
+  /* Gallery Grid */
+  .photo-grid {
+    display: grid;
+    grid-gap: 20px;
+    padding: 20px;
+  }
 
+  /* Adjust grid columns for different screen sizes */
+  @media (min-width: 1200px) {
+    .photo-grid {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+  }
+
+  @media (min-width: 800px) and (max-width: 1199px) {
+    .photo-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+  }
+
+  @media (max-width: 799px) {
+    .photo-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  }
+
+  /* Photo Item Styles */
+  .photo-item {
+    background-color: #f0f0f0;
+  }
+
+  .photo-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>
+
+<!---
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const grid = document.querySelector('.photo-grid');
@@ -70,34 +110,4 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', () => items.forEach(handleImage));
 });
 </script>
-<style>
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 20px;
-  padding: 20px;
-}
-
-.photo-item {
-  position: relative;
-  overflow: hidden;
-  background-color: #f0f0f0; /* Light grey background */
-}
-
-.photo-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-@media (max-width: 600px) {
-  .photo-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .photo-item {
-    grid-column: auto !important;
-    grid-row: auto !important;
-  }
-}
-</style>
+--->
