@@ -60,50 +60,49 @@ layout: default
     gutter: 15
   });
 </script>
-<!---
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const grid = document.querySelector('.photo-grid');
-  const allItems = grid.querySelectorAll('.photo-item');
-
-  function resizeAllGridItems() {
-    allItems.forEach(item => {
-      resizeGridItem(item);
-    });
-  }
-
-  function resizeInstance(instance) {
-    const item = instance.target.parentElement;
-    resizeGridItem(item);
-  }
-
-  function resizeGridItem(item) {
+  document.addEventListener('DOMContentLoaded', function () {
     const grid = document.querySelector('.photo-grid');
-    const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-    const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-gap'));
-    const img = item.querySelector('img');
-    const imgHeight = img.getBoundingClientRect().height;
-    const rowSpan = Math.ceil((imgHeight + rowGap) / (rowHeight + rowGap));
-    item.style.gridRowEnd = 'span ' + rowSpan;
-  }
+    const allItems = grid.querySelectorAll('.photo-item');
 
-  allItems.forEach(item => {
-    imagesLoaded(item, instance => {
-      resizeInstance(instance);
-    });
-  });
-
-  window.addEventListener('resize', resizeAllGridItems);
-
-  // ImagesLoaded function to detect when images have loaded
-  function imagesLoaded(el, callback) {
-    const img = el.querySelector('img');
-    if (img.complete) {
-      callback({ target: img });
-    } else {
-      img.addEventListener('load', callback);
+    function resizeAllGridItems() {
+      allItems.forEach(item => {
+        resizeGridItem(item);
+      });
     }
-  }
-});
+
+    function resizeInstance(instance) {
+      const item = instance.target.parentElement;
+      resizeGridItem(item);
+    }
+
+    function resizeGridItem(item) {
+      const grid = document.querySelector('.photo-grid');
+      const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
+      const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-gap'));
+      const img = item.querySelector('img');
+      const imgHeight = img.getBoundingClientRect().height;
+      const rowSpan = Math.ceil((imgHeight + rowGap) / (rowHeight + rowGap));
+      item.style.gridRowEnd = 'span ' + rowSpan;
+    }
+
+    allItems.forEach(item => {
+      imagesLoaded(item, instance => {
+        resizeInstance(instance);
+      });
+    });
+
+    window.addEventListener('resize', resizeAllGridItems);
+
+    // ImagesLoaded function to detect when images have loaded
+    function imagesLoaded(el, callback) {
+      const img = el.querySelector('img');
+      if (img.complete) {
+        callback({ target: img });
+      } else {
+        img.addEventListener('load', callback);
+      }
+    }
+  });
 </script>
---->
