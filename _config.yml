@@ -21,7 +21,7 @@
 title: James Hindmarch
 email: "[First Name] [Surname] [Last two digits of my birth year] @ gmail.com"
 description: >- # this means to ignore newlines until "baseurl:"
-  My website where I talk about myself and things that interest me.
+  A website about my life and interests.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://styme3279.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  styme3279
