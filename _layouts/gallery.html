@@ -17,7 +17,6 @@ layout: default
       {% assign image_files = site.static_files | where_exp: "file", "file.path contains page.gallery_path" %}
       {% for image in image_files %}
       <div class="photo-item">
-        <!-- Use optimized thumbnails -->
         <img src="{{ image.path | relative_url }}" alt="{{ image.name }}" loading="lazy">
       </div>
       {% else %}
@@ -30,84 +29,81 @@ layout: default
   </div>
 </article>
 <style>
-  /* Gallery Grid */
+  /* Base styles */
   .photo-grid {
     display: grid;
-    grid-gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: 10px;
+    /* Base height for rows */
+    grid-gap: 15px;
+    padding: 15px;
   }
 
-  /* Adjust grid columns for different screen sizes */
-  @media (min-width: 1200px) {
-    .photo-grid {
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    }
-  }
-
-  @media (min-width: 800px) and (max-width: 1199px) {
-    .photo-grid {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    }
-  }
-
-  @media (max-width: 799px) {
-    .photo-grid {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-  }
-
-  /* Photo Item Styles */
   .photo-item {
-    background-color: #f0f0f0;
+    position: relative;
   }
 
   .photo-item img {
     width: 100%;
-    height: auto;
     display: block;
+    object-fit: cover;
+    /* Ensures images fill their containers */
   }
 </style>
 
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js">
+  const grid = document.querySelector('.photo-grid');
+  new Masonry(grid, {
+    itemSelector: '.photo-item',
+    columnWidth: '.photo-item',
+    percentPosition: true,
+    gutter: 15
+  });
+</script>
 <!---
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const grid = document.querySelector('.photo-grid');
-  const items = grid.querySelectorAll('.photo-item');
+  const allItems = grid.querySelectorAll('.photo-item');
 
-  function handleImage(item) {
+  function resizeAllGridItems() {
+    allItems.forEach(item => {
+      resizeGridItem(item);
+    });
+  }
+
+  function resizeInstance(instance) {
+    const item = instance.target.parentElement;
+    resizeGridItem(item);
+  }
+
+  function resizeGridItem(item) {
+    const grid = document.querySelector('.photo-grid');
+    const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
+    const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-gap'));
     const img = item.querySelector('img');
-    
+    const imgHeight = img.getBoundingClientRect().height;
+    const rowSpan = Math.ceil((imgHeight + rowGap) / (rowHeight + rowGap));
+    item.style.gridRowEnd = 'span ' + rowSpan;
+  }
+
+  allItems.forEach(item => {
+    imagesLoaded(item, instance => {
+      resizeInstance(instance);
+    });
+  });
+
+  window.addEventListener('resize', resizeAllGridItems);
+
+  // ImagesLoaded function to detect when images have loaded
+  function imagesLoaded(el, callback) {
+    const img = el.querySelector('img');
     if (img.complete) {
-      setImageSize(item, img);
+      callback({ target: img });
     } else {
-      img.addEventListener('load', () => setImageSize(item, img));
+      img.addEventListener('load', callback);
     }
   }
-
-  function setImageSize(item, img) {
-    const ratio = img.naturalWidth / img.naturalHeight;
-    
-    if (ratio > 1.3) {  // Landscape images
-      item.style.gridColumn = "span 2";
-    } else if (ratio < 0.7) {  // Portrait images
-      item.style.gridRow = "span 2";
-    }
-    
-    // For very wide panoramas
-    if (ratio > 2) {
-      item.style.gridColumn = "1 / -1";  // Span all columns
-    }
-
-    // Calculate the height based on the width and original aspect ratio
-    const width = item.offsetWidth;
-    const height = width / ratio;
-    item.style.height = `${height}px`;
-  }
-
-  items.forEach(handleImage);
-
-  // Recalculate sizes on window resize
-  window.addEventListener('resize', () => items.forEach(handleImage));
 });
 </script>
 --->
