@@ -12,13 +12,13 @@ The first mathematical logic course I took was Logic and Set Theory ([notes here
 
 ### Compactness/Completeness
 
-I think the completeness and compactness theorems are definitely up there (although, the analogy between the compactness theorem of mathematical logic, and compactness in topology is the pure maths equivalent of the [Entropy](https://en.wikipedia.org/wiki/Entropy)/[Entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory)) distinction, if you want to know the rough reason for this naming 'confusion', look at [this](https://en.wikipedia.org/wiki/Stone%27s_representation_theorem_for_Boolean_algebras)). There's something so powerful about the fact that proofs *have* to be finite; this should be obvious from the moment you start learning what proofs are but it doesn't hit you over the head until you understand the compactness theorem. It's also just incredibly cool that Gödel managed to show we can always build a complete model for any consistent theory. At first glance, this theorem seemed more important than Gödel's incompleteness theorems, but later when I took Set Theory courses I realized that was not the case, and the incompleteness theorems have claimed their place rightfully (though the completeness theorem remainds underrated).
+I think the completeness and compactness theorems are definitely up there (although, the analogy between the compactness theorem of mathematical logic, and compactness in topology is the pure maths equivalent of the [Entropy](https://en.wikipedia.org/wiki/Entropy)/[Entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory)) distinction, if you want to know the rough reason for this naming 'confusion', look at [this](https://en.wikipedia.org/wiki/Stone%27s_representation_theorem_for_Boolean_algebras)). There's something so powerful about the fact that proofs *have* to be finite; this should be obvious from the moment you start learning what proofs are but it doesn't hit you over the head until you understand the compactness theorem. It's also just incredibly cool that Gödel managed to show we can always build a complete model for any consistent theory. At first glance, this theorem seemed more important than Gödel's incompleteness theorems, but later when I took Set Theory courses I realized that was not the case, and the incompleteness theorems have claimed their place rightfully (though the completeness theorem remains underrated).
 
 ### Ordinals
 As a first introduction to ordinals, this is heavy-going but great. A particular highlight would be the proof that the collection of ordinals don't form a set, and Hartogs' Lemma. Also this forms the basis of almost all future set theory, and serves a great foundation to work from.
 
 ### Cardinals
-The course is pretty light on cardinals. It basically tells you what an aleph number is, and how addition and multiplication differs from ordinals. It's argubaly justified, since it's hard to say anything about cardinals beyond the obvious things (thanks a lot $$2^{\aleph_{0}}$$). Although I feel like König's theorem probably could have been introduced and proven, especially if you're going to mention cardinal exponentiation, since that's just about the only thing we *can* say about cardinal exponentiation.
+The course is pretty light on cardinals. It basically tells you what an aleph number is, and how addition and multiplication differs from ordinals. It's arguably justified, since it's hard to say anything about cardinals beyond the obvious things (thanks a lot $$2^{\aleph_{0}}$$). Although I feel like König's theorem probably could have been introduced and proven, especially if you're going to mention cardinal exponentiation, since that's just about the only thing we *can* say about cardinal exponentiation.
 
 ### Basic Set Theory
 If you want to really *understand* the axioms of $$\mathrm{ZFC}$$, this is probably the way to go. If you want additional philosophical information about the axioms, the obvious resource is Maddy's [*Believing the Axioms*](https://www.cs.umd.edu/~gasarch/BLOGPAPERS/belaxioms1.pdf). 
@@ -31,7 +31,7 @@ The second mathematical logic course I took was Model Theory and Non-Classical L
 
 ### Quantifier-free sentences
 
-Quantifier-free sentences appear early and often in this course. Upon first seeing them, I had no idea how pivotal they would end up being to the rest of (the model theory section of) this course. It remains very unintiuitive to me that for any structure $$M$$ in model theory, any superstructure or substructure of $$M$$ must satisfy the same quantifier-free sentences, but it's true!
+Quantifier-free sentences appear early and often in this course. Upon first seeing them, I had no idea how pivotal they would end up being to the rest of (the model theory section of) this course. It remains very unintuitive to me that for any structure $$M$$ in model theory, any superstructure or substructure of $$M$$ must satisfy the same quantifier-free sentences, but it's true!
 
 ### Quantifier Elimination
 
@@ -69,7 +69,7 @@ I was glad to get to learn about this in a proper course in Cambridge, as oppose
 
 #### Generalized completeness theorem
 
-This section basically explains how the completeness theorem all the way back in Logic and Set Theory is actually a special case of a general theorem on Heyting algebras (where the law of the excluded middle forces the Hyeting algebra to be a Boolean algebra, and then everything becomes way easier). So we can get completeness results in Heyting algebras which will then apply to intuitionistic logic (obviously *slightly* weaker, but not as much as you might think!).
+This section basically explains how the completeness theorem all the way back in Logic and Set Theory is actually a special case of a general theorem on Heyting algebras (where the law of the excluded middle forces the Heyting algebra to be a Boolean algebra, and then everything becomes way easier). So we can get completeness results in Heyting algebras which will then apply to intuitionistic logic (obviously *slightly* weaker, but not as much as you might think!).
 
 ## Large Cardinals
 
@@ -85,15 +85,15 @@ We generalize another property of $$\omega$$, that there is a non-principal ultr
 
 ### Large Cardinals for Infinitary Logic
 
-Languages where you can take finitely many conjunctions and disjunctions, and quantify over finitely many objects have a completeness property for theories containing finitely many sentences (as mentioned in the last two courses). But suppose instead we took infinite-sized conjunctions and disjunctions, and quantified over infinitely many objects with universal or existential quantifiers — would these be complete for theories of infinitely many sentences? Well, not according to $$\mathrm{ZFC}$$, but that shouldn't stop us. If we suppose that such a cardinal existed, we get *strongly compact* cardinals, which actually entail measurability (by a nifty argument involving an application of completeness to a language describing an ultrafilter). Weakly compact cardinals are a more combinatorially flavoured object, but it turns out that these are equivalent to a weaker form of the completeness condition we imposed above (although this is stated without proof).
+Languages where you can take finitely many conjunctions and disjunctions, and quantify over finitely many objects have a completeness property for theories containing finitely many sentences (as mentioned in the last two courses). But suppose instead we took infinite-sized conjunctions and disjunctions, and quantified over infinitely many objects with universal or existential quantifiers — would these be complete for theories of infinitely many sentences? Well, not according to $$\mathrm{ZFC}$$, but that shouldn't stop us. If we suppose that such a cardinal existed, we get *strongly compact* cardinals, which actually entail measurability (by a nifty argument involving an application of completeness to a language describing an ultrafilter). Weakly compact cardinals are more combinatorially flavoured, but it turns out that their existence is equivalent to a weaker form of the completeness condition we imposed above (although this is stated without proof).
 
 ### Taking the Ultrapower of the Universe
 
-One of the coolest course subsection titles in all of Cambridge mathematics. This essentially refers to the fact that, since measurable cardinals have an ultrafilter on them, we can take an Ultrapower of a model of set theory (assuming that there is an inaccessible above the measurable cardinal). This was pretty cool, although this was definitely where the course really got going and required an engaged brain — also circuitously very useful for my essay (although all of this content was, since my essay was essentially about a certain type of large cardinal property).
+One of the coolest course subsection titles in all of Cambridge mathematics. This essentially refers to the fact that, since measurable cardinals have an ultrafilter on them, we can take an ultrapower of a model of set theory (assuming that there is an inaccessible above the measurable cardinal). This was pretty cool, although this was definitely where the course really got going and required an engaged brain — also circuitously very useful for my essay (although all of this content was, since my essay was essentially about a certain type of large cardinal property).
 
 ### Reflection and bigger cardinals
 
-After taking the ultrapower of the universe, we're introduced to the idea of reflection, which is a consequence of the Keisler Extension Property (which I won't explain here). Essentially, it boils down to the fact that if we have a cardinal $$\kappa$$ such that $$V_{\kappa$$ is a model of set theory, then there is an elementary extension of this model which will model all the same sentences. Then since this model contains $$\kappa$$, anything which it believes about $$\kappa$$, $$V_{\kappa}$$ must believe about arbitrarily large cardinals (below $$\kappa$$, obviously, since $$V_{\kappa}$$ can't see $$\kappa$$ itself). This allows us to reflect certain properties of $$\kappa$$ back to cardinals which form a cofinal set of $$\kappa$$ (for example, inaccessibility, weak comapctness, or even measurability).
+After taking the ultrapower of the universe, we're introduced to the idea of reflection, which is a consequence of the Keisler Extension Property (which I won't explain here). Essentially, it boils down to the fact that if we have a cardinal $$\kappa$$ such that $$V_{\kappa$$ is a model of set theory, then there is an elementary extension of this model which will model all the same sentences. Then since this model contains $$\kappa$$, anything which it believes about $$\kappa$$, $$V_{\kappa}$$ must believe about arbitrarily large cardinals (below $$\kappa$$, obviously, since $$V_{\kappa}$$ can't see $$\kappa$$ itself). This allows us to reflect certain properties of $$\kappa$$ back to cardinals which form a cofinal set of $$\kappa$$ (for example, inaccessibility, weak compactness, or even measurability).
 
 ### Cardinals that are too big
 
@@ -113,7 +113,7 @@ This had already been lectured in a more general manner in the model theory cour
 
 I think this was a pretty good section. It is in some sense surprising that this arises in this course instead of the Large Cardinals course. However, it shouldn't be! This is because how much we can say about cardinal arithmetic is deeply tied to the truth or falsity of the Continuum Hypothesis (inasmuch as we are talking about cardinal exponentiation).
 
-### Gödel Functions and Construtibility
+### Gödel Functions and Constructibility
 
 This proof worried me a lot. It was *so* long, and *so* seemingly arbitrary that it seemed to bode poorly for the rest of the course. I needn't have worried, as it's probably the worst proof in the course (depending on whether you count "proving forcing works" as one big theorem, or a lot of smaller theorems, and I think it's probably the latter). I suppose sometimes one just needs to show that every quantifier-free sentence in set theory can be written using one of 10 different basic functions. I think this proof should've just been omitted to make more time at the end of the course when things were actually interesting, but I get why it was included.
 
@@ -127,7 +127,7 @@ The meat of the course. I'll break this down into subsections, since there's too
 
 #### Dense sets and Generic sets
 
-This felt pretty poorly motivated. That being said, forcing is hard, and it is really hard to see how it all clicks into place until it *all* clicks into place, and you have to start somewhere. I suppose dense and generic sets are where you often start, since they're the most concrete *things you actually work with* in forcing when you try to do a forcing prood.
+This felt pretty poorly motivated. That being said, forcing is hard, and it is really hard to see how it all clicks into place until it *all* clicks into place, and you have to start somewhere. I suppose dense and generic sets are where you often start, since they're the most concrete *things you actually work with* in forcing when you try to do a forcing proof.
 
 #### Names
 
@@ -139,7 +139,7 @@ At first I reacted pretty strongly against this. I think this was just an aesthe
 
 #### Independence results
 
-This is the big one. I liked how it was shown that cardinals and cofinalities are preserved under forcings by generic extensions. Countable chain conditions et cetera were at least comprehensible, and the combinatorially flavoured arguments worked well with the style of argument I'd come to expect about cardinals from the Large Cardinals course, so it wasn't too difficult to understand (the second or third time I went through it, so not easy to understand either). Then also $$\mathrm{CH}$$ is independent of $$\mathrm{ZFC}$$. Damn. Crazy.
+This is the big one. I liked how it was shown that cardinals and cofinalities are preserved under forcings by generic extensions. Countable chain conditions et cetera were at least comprehensible, and the combinatorially-flavoured arguments worked well with the style of argument I'd come to expect about cardinals from the Large Cardinals course, so it wasn't too difficult to understand (the second or third time I went through it, so not easy to understand either). Then also $$\mathrm{CH}$$ is independent of $$\mathrm{ZFC}$$. Damn. Crazy.
 
 #### Other Forcing Methods
 

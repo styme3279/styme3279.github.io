@@ -20,7 +20,7 @@ Books I'm currently reading:
 
 - Nonfiction: *An Introduction to Contemporary Metaethics* - Alexander Miller
 
-- Nonfiction: *The Making of the Atomic Bomb* - Richrd Rhodes
+- Nonfiction: *The Making of the Atomic Bomb* - Richard Rhodes
 
 If you see me in person and have any questions about any of these books, I'd be happy to talk more about them.
 
