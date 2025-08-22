@@ -13,12 +13,19 @@ layout: default
     {{ content }}
 
     {% if page.gallery_path %}
-    <div class="photo-grid">
+    <div class="photo-grid" aria-live="polite">
       {% assign image_files = site.static_files | where_exp: "file", "file.path contains page.gallery_path" %}
       {% for image in image_files %}
-      <div class="photo-item">
-        <img src="{{ image.path | relative_url }}" alt="{{ image.name }}" loading="lazy">
-      </div>
+      <figure class="photo-item">
+        <!--
+              NOTE: This version prioritizes speed and zero layout jank.
+              Images render at their natural aspect ratio; no JS layout work.
+              If you later generate responsive variants, you can wrap the <img>
+              with a <picture> (see comment near the end).
+            -->
+        <img src="{{ image.path | relative_url }}" alt="{{ image.name | escape }}" loading="lazy" decoding="async"
+          fetchpriority="{% if forloop.index == 1 %}high{% else %}low{% endif %}">
+      </figure>
       {% else %}
       <p>No images found in the specified gallery path.</p>
       {% endfor %}
@@ -28,81 +35,50 @@ layout: default
     {% endif %}
   </div>
 </article>
+
 <style>
-  /* Base styles */
+  /* Masonry-like layout using CSS columns: zero JS, great performance */
   .photo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-auto-rows: 10px;
-    /* Base height for rows */
-    grid-gap: 15px;
-    padding: 15px;
+    column-width: 320px;
+    /* Browser chooses column count */
+    column-gap: 16px;
+    padding: 8px;
+  }
+
+  @media (min-width: 768px) {
+    .photo-grid {
+      column-width: 360px;
+      column-gap: 18px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .photo-grid {
+      column-width: 420px;
+      column-gap: 20px;
+    }
   }
 
   .photo-item {
-    position: relative;
+    break-inside: avoid;
+    margin: 0 0 16px;
   }
 
   .photo-item img {
-    width: 100%;
     display: block;
-    object-fit: cover;
-    /* Ensures images fill their containers */
+    width: 100%;
+    height: auto;
+    /* preserve each image’s aspect ratio */
+    border-radius: 8px;
+  }
+
+  /* Optional: subtle fade-in for perceived speed */
+  .photo-item img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+
+  .photo-item img:is(:not([loading]), [loading="lazy"]:not(:placeholder-shown)) {
+    opacity: 1;
   }
 </style>
-
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js">
-  const grid = document.querySelector('.photo-grid');
-  new Masonry(grid, {
-    itemSelector: '.photo-item',
-    columnWidth: '.photo-item',
-    percentPosition: true,
-    gutter: 15
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const grid = document.querySelector('.photo-grid');
-    const allItems = grid.querySelectorAll('.photo-item');
-
-    function resizeAllGridItems() {
-      allItems.forEach(item => {
-        resizeGridItem(item);
-      });
-    }
-
-    function resizeInstance(instance) {
-      const item = instance.target.parentElement;
-      resizeGridItem(item);
-    }
-
-    function resizeGridItem(item) {
-      const grid = document.querySelector('.photo-grid');
-      const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-      const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-gap'));
-      const img = item.querySelector('img');
-      const imgHeight = img.getBoundingClientRect().height;
-      const rowSpan = Math.ceil((imgHeight + rowGap) / (rowHeight + rowGap));
-      item.style.gridRowEnd = 'span ' + rowSpan;
-    }
-
-    allItems.forEach(item => {
-      imagesLoaded(item, instance => {
-        resizeInstance(instance);
-      });
-    });
-
-    window.addEventListener('resize', resizeAllGridItems);
-
-    // ImagesLoaded function to detect when images have loaded
-    function imagesLoaded(el, callback) {
-      const img = el.querySelector('img');
-      if (img.complete) {
-        callback({ target: img });
-      } else {
-        img.addEventListener('load', callback);
-      }
-    }
-  });
-</script>
