@@ -13,16 +13,14 @@ layout: default
     {{ content }}
 
     {% if page.gallery_path %}
-    <div class="photo-grid" aria-live="polite">
-      {% assign image_files = site.static_files | where_exp: "file", "file.path contains page.gallery_path" %}
+    {% assign image_files = site.static_files | where_exp: "file", "file.path contains page.gallery_path" %}
+    <div class="photo-grid">
+      <!-- Sizing elements for Masonry -->
+      <div class="grid-sizer"></div>
+      <div class="gutter-sizer"></div>
+
       {% for image in image_files %}
       <figure class="photo-item">
-        <!--
-              NOTE: This version prioritizes speed and zero layout jank.
-              Images render at their natural aspect ratio; no JS layout work.
-              If you later generate responsive variants, you can wrap the <img>
-              with a <picture> (see comment near the end).
-            -->
         <img src="{{ image.path | relative_url }}" alt="{{ image.name | escape }}" loading="lazy" decoding="async"
           fetchpriority="{% if forloop.index == 1 %}high{% else %}low{% endif %}">
       </figure>
@@ -37,74 +35,154 @@ layout: default
 </article>
 
 <style>
-  /* Let the gallery expand and center on large screens */
+  /* Center the gallery on large screens */
   .gallery-content {
     max-width: 1600px;
     margin: 0 auto;
   }
 
-  /* Masonry-like layout using explicit column counts */
+  /* Masonry base: we control column widths via CSS, Masonry handles vertical packing */
   .photo-grid {
-    padding: 8px;
-    column-gap: 16px;
-    -webkit-column-gap: 16px;
-    /* Safari */
-    column-fill: balance;
-    -webkit-column-fill: balance;
-    /* Safari */
-    /* default: 1 column on tiny screens */
-    column-count: 1;
-    -webkit-column-count: 1;
+    margin: 0 auto;
   }
 
-  /* Grow columns as viewport widens */
+  .grid-sizer,
+  .photo-item {
+    width: 100%;
+  }
+
+  /* 1 col by default on tiny screens */
+  .gutter-sizer {
+    width: 16px;
+  }
+
+  /* At >=640px: 2 columns */
   @media (min-width: 640px) {
-    .photo-grid {
-      column-count: 2;
-      -webkit-column-count: 2;
+
+    .grid-sizer,
+    .photo-item {
+      width: calc((100% - 16px) / 2);
     }
   }
 
+  /* At >=900px: 3 columns */
   @media (min-width: 900px) {
-    .photo-grid {
-      column-count: 3;
-      -webkit-column-count: 3;
+
+    .grid-sizer,
+    .photo-item {
+      width: calc((100% - 2 * 16px) / 3);
     }
+  }
+
+  /* At >=1200px: 4 columns */
+  @media (min-width: 1200px) {
+
+    .grid-sizer,
+    .photo-item {
+      width: calc((100% - 3 * 16px) / 4);
+    }
+  }
+
+  /* At >=1600px: 5 columns */
+  @media (min-width: 1600px) {
+
+    .grid-sizer,
+    .photo-item {
+      width: calc((100% - 4 * 16px) / 5);
+    }
+  }
+
+  /* Allow extra-wide shots to span 2 columns at medium+ sizes */
+  @media (min-width: 900px) {
+    .photo-item.wide {
+      width: calc(2 * ((100% - 2 * 16px) / 3) + 16px);
+    }
+
+    /* spans 2 of 3 cols */
   }
 
   @media (min-width: 1200px) {
-    .photo-grid {
-      column-count: 4;
-      -webkit-column-count: 4;
+    .photo-item.wide {
+      width: calc(2 * ((100% - 3 * 16px) / 4) + 16px);
     }
+
+    /* spans 2 of 4 cols */
   }
 
   @media (min-width: 1600px) {
-    .photo-grid {
-      column-count: 5;
-      -webkit-column-count: 5;
+    .photo-item.wide {
+      width: calc(2 * ((100% - 4 * 16px) / 5) + 16px);
     }
+
+    /* spans 2 of 5 cols */
   }
 
   .photo-item {
-    break-inside: avoid;
-    -webkit-column-break-inside: avoid;
-    /* Safari */
-    margin: 0 0 16px;
+    margin-bottom: 16px;
   }
 
   .photo-item img {
     display: block;
     width: 100%;
     height: auto;
-    /* preserve natural aspect ratios */
+    /* preserve natural aspect ratio */
     border-radius: 8px;
-    /* optional fade-in */
     opacity: 0;
+    /* subtle fade-in for perceived speed */
     transition: opacity .25s ease;
   }
 
-  .photo-item img:is(:not([loading]), [loading="lazy"]:not(:placeholder-shown)) {
+  .photo-item img[data-loaded="true"] {
     opacity: 1;
   }
 </style>
+
+<!-- Masonry + imagesLoaded (deferred) -->
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js" defer></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js" defer></script>
+<script defer>
+  window.addEventListener('DOMContentLoaded', () => {
+    const grid = document.querySelector('.photo-grid');
+
+    // Mark ultra-wide images so they can span 2 columns on larger screens
+    // (e.g., 2560x1080 has aspect ~2.37 -> "wide")
+    grid.querySelectorAll('.photo-item img').forEach(img => {
+      // When the image is ready, tag it "wide" if aspect >= 2.0
+      const tagIfWide = () => {
+        const ar = img.naturalWidth / img.naturalHeight;
+        if (isFinite(ar) && ar >= 2.0) {
+          img.closest('.photo-item').classList.add('wide');
+        }
+        img.setAttribute('data-loaded', 'true');
+      };
+      if (img.complete) tagIfWide();
+      else img.addEventListener('load', tagIfWide, { once: true });
+    });
+
+    // Initialize Masonry after images are loaded enough to measure
+    imagesLoaded(grid, () => {
+      const msnry = new Masonry(grid, {
+        itemSelector: '.photo-item',
+        columnWidth: '.grid-sizer',
+        gutter: '.gutter-sizer',
+        percentPosition: true,
+        transitionDuration: 0
+      });
+
+      // Re-layout when any image finishes loading (progressive)
+      imagesLoaded(grid).on('progress', () => msnry.layout());
+
+      // Re-layout on resize, throttled
+      let ticking = false;
+      window.addEventListener('resize', () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(() => {
+            msnry.layout();
+            ticking = false;
+          });
+        }
+      });
+    });
+  });
+</script>
