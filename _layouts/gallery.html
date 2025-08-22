@@ -37,30 +37,59 @@ layout: default
 </article>
 
 <style>
-  /* Masonry-like layout using CSS columns: zero JS, great performance */
-  .photo-grid {
-    column-width: 320px;
-    /* Browser chooses column count */
-    column-gap: 16px;
-    padding: 8px;
+  /* Let the gallery expand and center on large screens */
+  .gallery-content {
+    max-width: 1600px;
+    margin: 0 auto;
   }
 
-  @media (min-width: 768px) {
+  /* Masonry-like layout using explicit column counts */
+  .photo-grid {
+    padding: 8px;
+    column-gap: 16px;
+    -webkit-column-gap: 16px;
+    /* Safari */
+    column-fill: balance;
+    -webkit-column-fill: balance;
+    /* Safari */
+    /* default: 1 column on tiny screens */
+    column-count: 1;
+    -webkit-column-count: 1;
+  }
+
+  /* Grow columns as viewport widens */
+  @media (min-width: 640px) {
     .photo-grid {
-      column-width: 360px;
-      column-gap: 18px;
+      column-count: 2;
+      -webkit-column-count: 2;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .photo-grid {
+      column-count: 3;
+      -webkit-column-count: 3;
     }
   }
 
   @media (min-width: 1200px) {
     .photo-grid {
-      column-width: 420px;
-      column-gap: 20px;
+      column-count: 4;
+      -webkit-column-count: 4;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .photo-grid {
+      column-count: 5;
+      -webkit-column-count: 5;
     }
   }
 
   .photo-item {
     break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    /* Safari */
     margin: 0 0 16px;
   }
 
@@ -68,12 +97,9 @@ layout: default
     display: block;
     width: 100%;
     height: auto;
-    /* preserve each image’s aspect ratio */
+    /* preserve natural aspect ratios */
     border-radius: 8px;
-  }
-
-  /* Optional: subtle fade-in for perceived speed */
-  .photo-item img[loading="lazy"] {
+    /* optional fade-in */
     opacity: 0;
     transition: opacity .25s ease;
   }
