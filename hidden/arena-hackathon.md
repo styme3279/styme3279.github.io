@@ -7,6 +7,6 @@ nav_exclude: true
 
 # ARENA HACKATHON SLACK QR CODE
 
-![/images/misc/Untitled.jpg](/images/misc/Untitled.jpg)
+<img src = "/images/misc/Untitled.jpg" width=400 height=400>
 
 Happy Hacking!
