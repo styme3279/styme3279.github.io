@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Intuitive Explanation of Big Numbers"
+title: ""
 permalink: /hackathon
 nav_exclude: true
 ---
