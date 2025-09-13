@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Intuitive Explanation of Big Numbers"
-permalink: /blog_to_be/large_cardinals
+permalink: /hackathon
 nav_exclude: true
 ---
 
