@@ -12,6 +12,9 @@ nav_exclude: true
 </div>
 Happy Hacking!
 
+[Slido Present Link](https://wall.sli.do/event/72RLEFwcPFAzY5Fux2GVXC/?section=a5aed8a4-d0c9-45e0-8612-9b27fa35a1f9)
+[Slido link Q&A](https://app.sli.do/event/72RLEFwcPFAzY5Fux2GVXC/live/questions)
+
 <style>
 .side-by-side {
   display: flex;
