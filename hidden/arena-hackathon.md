@@ -8,7 +8,7 @@ nav_exclude: true
 # ARENA HACKATHON SLACK QR CODE
 <div class="side-by-side">
     <img src = "/images/misc/hackathonQR.jpg" width=400 height=400>
-    <img src = "/images/misc/mech-interp-meme.png" width=400 height=400>
+    <img src = "/images/misc/mech-interp-meme.png" width=800 height=800>
 </div>
 Happy Hacking!
 
