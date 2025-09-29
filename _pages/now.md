@@ -16,11 +16,13 @@ Currently I am living in London, working at the [LISA](https://www.safeai.org.uk
 
 Books I'm currently reading:
 
-- Fiction: *A Place of Greater Safety* - Hilary Mantel
+- Fiction: N/A :(
 
-- Nonfiction: *An Introduction to Contemporary Metaethics* - Alexander Miller
+- Nonfiction: *The Logic of Scientific Discovery* - Karl Popper
 
-- Nonfiction: *The Making of the Atomic Bomb* - Richard Rhodes
+- Nonfiction: *William Pitt the Younger: A Biography* - William Hague
+
+- Nonfiction: *From Third World to First: The Singapore Story* - Lee Kuan Yew (mostly reading excerpts)
 
 If you see me in person and have any questions about any of these books, I'd be happy to talk more about them.
 
