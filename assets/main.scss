@@ -163,13 +163,7 @@ input[type="checkbox"] {
 
 /* Safari mobile viewport fixes */
 @supports (-webkit-touch-callout: none) {
-    /* Safari-specific styles */
-    .site-header {
-        position: -webkit-sticky !important;
-        position: sticky !important;
-        top: 5px !important;
-    }
-    
+    /* Safari-specific styles */    
     .site-nav input ~ .trigger {
         -webkit-backdrop-filter: blur(15px) !important;
         backdrop-filter: blur(15px) !important;
