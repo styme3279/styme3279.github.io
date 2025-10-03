@@ -48,6 +48,8 @@ body {
     min-height: 100vh;
     padding-top: 100px;
     /* Add space for fixed header */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    box-sizing: border-box;
 }
 
 /* Beautiful navigation bar styling */
@@ -136,7 +138,7 @@ body {
 @media screen and (max-width: 600px) {
     .site-header {
         max-width: 95vw !important;
-        padding: 8px 15px !important;
+        padding: 8px 12px !important;
         top: 5px !important;
         border-radius: 15px !important;
         /* Fix for mobile positioning issues */
@@ -155,32 +157,64 @@ body {
     }
     
     .site-nav {
-        margin-left: 15px !important;
+        margin-left: 10px !important;
         flex-shrink: 1 !important;
+        overflow: hidden !important;
     }
     
     .site-nav .trigger {
         display: flex !important;
         flex-wrap: nowrap !important;
-        gap: 2px !important;
+        gap: 1px !important;
+        overflow-x: auto !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+    }
+    
+    .site-nav .trigger::-webkit-scrollbar {
+        display: none !important;
     }
     
     .page-link {
-        padding: 6px 10px !important;
-        margin: 0 1px !important;
-        font-size: 0.8em !important;
-        border-radius: 20px !important;
+        padding: 5px 8px !important;
+        margin: 0 !important;
+        font-size: 0.7em !important;
+        border-radius: 15px !important;
         white-space: nowrap !important;
+        flex-shrink: 0 !important;
+        min-width: auto !important;
     }
     
     .site-header .site-title {
-        font-size: 1.3rem !important;
+        font-size: 1.1rem !important;
         letter-spacing: 0 !important;
         flex-shrink: 0 !important;
+        max-width: 50% !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
     
     body {
-        padding-top: 80px !important;
+        padding-top: 70px !important;
+    }
+    
+    /* Fix homepage glass containers */
+    .home .wrapper,
+    .page-content .wrapper {
+        max-width: 95vw !important;
+        padding: 0 10px !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Fix any glass containers that might overflow */
+    .post-container,
+    .posts-wrapper,
+    .page-container {
+        max-width: 95vw !important;
+        margin: 0 auto !important;
+        padding: 20px 15px !important;
+        box-sizing: border-box !important;
     }
 }
 
@@ -188,9 +222,9 @@ body {
 @media screen and (max-width: 480px) {
     .site-header {
         max-width: 98vw !important;
-        padding: 8px 10px !important;
+        padding: 6px 8px !important;
         flex-direction: column !important;
-        gap: 8px !important;
+        gap: 6px !important;
         top: 3px !important;
         /* Ensure proper positioning */
         position: fixed !important;
@@ -205,7 +239,7 @@ body {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        gap: 8px !important;
+        gap: 6px !important;
     }
     
     .site-nav {
@@ -219,26 +253,46 @@ body {
         display: flex !important;
         justify-content: center !important;
         flex-wrap: wrap !important;
-        gap: 4px !important;
+        gap: 3px !important;
         width: 100% !important;
+        max-width: 100% !important;
     }
     
     .page-link {
-        padding: 6px 10px !important;
-        margin: 2px !important;
-        font-size: 0.75em !important;
+        padding: 4px 8px !important;
+        margin: 1px !important;
+        font-size: 0.65em !important;
         flex-shrink: 0 !important;
+        border-radius: 12px !important;
     }
     
     .site-header .site-title {
-        font-size: 1.2rem !important;
+        font-size: 1rem !important;
         text-align: center !important;
         margin-bottom: 0 !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
     
     body {
-        padding-top: 140px !important;
+        padding-top: 100px !important;
     }
+    
+    /* Even more aggressive container fixes for tiny screens */
+    .home .wrapper,
+    .page-content .wrapper {
+        max-width: 98vw !important;
+        padding: 0 5px !important;
+    }
+    
+    .post-container,
+    .posts-wrapper,
+    .page-container {
+        max-width: 98vw !important;
+        padding: 15px 10px !important;
+    }
+}
     
     /* Make content containers more mobile-friendly */
     .page-container {
