@@ -139,10 +139,30 @@ body {
         padding: 8px 15px !important;
         top: 5px !important;
         border-radius: 15px !important;
+        /* Fix for mobile positioning issues */
+        position: fixed !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        box-sizing: border-box !important;
+    }
+    
+    .site-header .wrapper {
+        width: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-wrap: nowrap !important;
     }
     
     .site-nav {
         margin-left: 15px !important;
+        flex-shrink: 1 !important;
+    }
+    
+    .site-nav .trigger {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 2px !important;
     }
     
     .page-link {
@@ -150,11 +170,13 @@ body {
         margin: 0 1px !important;
         font-size: 0.8em !important;
         border-radius: 20px !important;
+        white-space: nowrap !important;
     }
     
     .site-header .site-title {
         font-size: 1.3rem !important;
         letter-spacing: 0 !important;
+        flex-shrink: 0 !important;
     }
     
     body {
@@ -166,37 +188,56 @@ body {
 @media screen and (max-width: 480px) {
     .site-header {
         max-width: 98vw !important;
-        padding: 6px 10px !important;
+        padding: 8px 10px !important;
         flex-direction: column !important;
         gap: 8px !important;
         top: 3px !important;
+        /* Ensure proper positioning */
+        position: fixed !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        box-sizing: border-box !important;
+        min-height: auto !important;
+    }
+    
+    .site-header .wrapper {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 8px !important;
     }
     
     .site-nav {
         margin-left: 0 !important;
         width: 100% !important;
+        display: flex !important;
         justify-content: center !important;
     }
     
     .site-nav .trigger {
+        display: flex !important;
         justify-content: center !important;
         flex-wrap: wrap !important;
-        gap: 2px !important;
+        gap: 4px !important;
+        width: 100% !important;
     }
     
     .page-link {
-        padding: 5px 8px !important;
-        margin: 1px !important;
+        padding: 6px 10px !important;
+        margin: 2px !important;
         font-size: 0.75em !important;
+        flex-shrink: 0 !important;
     }
     
     .site-header .site-title {
-        font-size: 1.1rem !important;
+        font-size: 1.2rem !important;
         text-align: center !important;
+        margin-bottom: 0 !important;
     }
     
     body {
-        padding-top: 120px !important;
+        padding-top: 140px !important;
     }
     
     /* Make content containers more mobile-friendly */
