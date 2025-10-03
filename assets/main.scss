@@ -15,7 +15,7 @@
     left: 50% !important;
     transform: translateX(-50%) translateY(0) !important;
     z-index: 1000 !important;
-    max-width: 80vw !important;
+    max-width: 90vw !important;
     width: auto !important;
     padding: 12px 25px !important;
     background: rgba(255, 255, 255, 0.3) !important;
@@ -57,6 +57,8 @@ body {
     background: none !important;
     margin-left: 40px !important;
     flex-shrink: 0 !important;
+    min-width: 0 !important;
+    overflow: visible !important;
 }
 
 .page-link {
@@ -129,6 +131,8 @@ body {
     border-radius: 0 !important;
     align-items: center !important;
     flex-wrap: nowrap !important;
+    min-width: 0 !important;
+    overflow: visible !important;
 }
 
 /* Fix potential mobile issues */
