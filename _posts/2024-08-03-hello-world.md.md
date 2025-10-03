@@ -1,12 +1,11 @@
 ---
-
 layout: post
 title: "Hello"
 categories: random
 date: 2024-08-03 14:20:00 +0100
 tags: [trial]
 comments: true
-
+excerpt_text: "A test post to check LaTeX rendering, blockquotes, and basic formatting on the new website."
 ---
 
 This is a "Hello world" post. I'm using to test that inline $$\LaTeX$$ works.

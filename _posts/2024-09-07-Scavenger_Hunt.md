@@ -3,6 +3,8 @@ layout: post
 title: Scavenger Hunt
 categories: random
 tags: [random]
+date: 2024-09-07
+excerpt_text: "A London scavenger hunt I designed for ARENA participants - explore museums, landmarks, and hidden gems around the city."
 ---
 
 The following is a scavenger hunt I designed for ARENAv4. If you want to do it, it should remain functional on my Google Drive. Maybe things will eventually be deprecated/removed from museums, and it won't continue to work, but I think it should stand the test of time decently (once I fix the Bust of Pericles, which is no longer at the British Museum).

@@ -4,10 +4,512 @@ title: Posts
 permalink: /posts/
 ---
 
-<h2>Posts</h2>
-{% for post in site.posts %}
-<article>
-    <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%b %-d, %Y" }}</time>
-    <h3><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
-</article>
-{% endfor %}
+<div class="page-container">
+    <div class="posts-wrapper">
+        <div class="posts-header">
+            <h2 id="posts-title">Posts</h2>
+        </div>
+
+        <div id="posts-list">
+            {% for post in site.posts %}
+            <article class="post-preview" data-categories="{{ post.categories | join: ' ' | slugify }}">
+                <div class="post-image">
+                    {% if post.featured_image %}
+                    <img src="{{ post.featured_image }}" alt="{{ post.title }}">
+                    {% else %}
+                    <img src="/images/default-post-image.png" alt="Default post image">
+                    {% endif %}
+                </div>
+
+                <div class="post-content">
+                    <div class="post-meta">
+                        <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+                        {% if post.categories %}
+                        <div class="post-categories">
+                            {% for category in post.categories %}
+                            <span class="category-tag category-{{ category | slugify }}">{{ category }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <h3 class="post-title">
+                        <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                    </h3>
+
+                    {% if post.excerpt_text %}
+                    <p class="post-excerpt">{{ post.excerpt_text }}</p>
+                    {% elsif post.excerpt %}
+                    <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+                    {% endif %}
+
+                    <a href="{{ post.url | prepend: site.baseurl }}" class="read-more">Read more →</a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const posts = document.querySelectorAll('.post-preview');
+        const postsTitle = document.getElementById('posts-title');
+
+        // Check URL parameters on load
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryParam = urlParams.get('category');
+
+        if (categoryParam) {
+            filterPosts(categoryParam);
+            updateTitle(categoryParam);
+        }
+
+        // Make category tags in posts clickable
+        document.querySelectorAll('.category-tag').forEach(tag => {
+            tag.style.cursor = 'pointer';
+            tag.title = `Click to filter by ${tag.textContent}`;
+            tag.addEventListener('click', function () {
+                const category = this.textContent.toLowerCase().trim().replace(/\s+/g, '-');
+                applyFilter(category);
+            });
+        });
+
+        // Add "Show All" functionality - clicking the title clears filters
+        postsTitle.style.cursor = 'pointer';
+        postsTitle.title = 'Click to show all posts';
+        postsTitle.addEventListener('click', function () {
+            applyFilter('all');
+        });
+
+        function applyFilter(filter) {
+            // Update URL without refresh
+            const url = new URL(window.location);
+            if (filter === 'all') {
+                url.searchParams.delete('category');
+            } else {
+                url.searchParams.set('category', filter);
+            }
+            window.history.pushState({}, '', url);
+
+            filterPosts(filter);
+            updateTitle(filter);
+        }
+
+        function filterPosts(filter) {
+            posts.forEach(post => {
+                if (filter === 'all') {
+                    post.style.display = 'flex';
+                } else {
+                    const categories = post.getAttribute('data-categories');
+                    if (categories && categories.includes(filter)) {
+                        post.style.display = 'flex';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        function updateTitle(filter) {
+            if (filter === 'all') {
+                postsTitle.textContent = 'Posts';
+                postsTitle.style.color = '#2c3e50';
+            } else {
+                const displayName = filter.charAt(0).toUpperCase() + filter.slice(1).replace('-', ' ');
+                postsTitle.textContent = `${displayName} Posts`;
+
+                // Auto-generate colors based on category name
+                const categoryColors = getCategoryColor(filter);
+                postsTitle.style.color = categoryColors.primary;
+            }
+        }
+
+        // Auto-generate category colors based on category name hash
+        function getCategoryColor(category) {
+            const colors = [
+                { primary: '#3f51b5', bg: 'rgba(232, 234, 246, 0.9)' }, // Blue
+                { primary: '#e91e63', bg: 'rgba(255, 235, 238, 0.9)' }, // Pink
+                { primary: '#4caf50', bg: 'rgba(232, 245, 233, 0.9)' }, // Green
+                { primary: '#ff9800', bg: 'rgba(255, 243, 224, 0.9)' }, // Orange
+                { primary: '#9c27b0', bg: 'rgba(243, 229, 245, 0.9)' }, // Purple
+                { primary: '#00bcd4', bg: 'rgba(224, 247, 250, 0.9)' }, // Cyan
+                { primary: '#795548', bg: 'rgba(239, 235, 233, 0.9)' }, // Brown
+                { primary: '#607d8b', bg: 'rgba(236, 239, 241, 0.9)' }  // Blue Grey
+            ];
+
+            // Create hash from category name
+            let hash = 0;
+            for (let i = 0; i < category.length; i++) {
+                const char = category.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // Convert to 32-bit integer
+            }
+
+            // Use hash to pick color consistently
+            const colorIndex = Math.abs(hash) % colors.length;
+            return colors[colorIndex];
+        }
+    });
+</script>
+</div>
+
+<style>
+    .page-container {
+        max-width: 60vw;
+        margin: 0 auto;
+        padding: 30px 20px;
+    }
+
+    .posts-wrapper {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        padding: 50px;
+        box-shadow: 0 4px 20px rgba(63, 81, 181, 0.1);
+        backdrop-filter: blur(10px);
+        margin-bottom: 30px;
+    }
+
+    .posts-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+        gap: 20px;
+        border-bottom: 2px solid rgba(63, 81, 181, 0.1);
+        padding-bottom: 25px;
+    }
+
+    .posts-wrapper h2 {
+        color: #2c3e50;
+        margin: 0;
+        flex: 1;
+        font-size: 2.2em;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: color 0.3s ease;
+    }
+
+    .posts-wrapper h2:hover {
+        color: #3f51b5;
+    }
+
+    .post-preview {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 35px;
+        padding: 25px;
+        border: 1px solid rgba(63, 81, 181, 0.1);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(5px);
+    }
+
+    .post-preview:hover {
+        box-shadow: 0 6px 25px rgba(63, 81, 181, 0.15);
+        transform: translateY(-3px);
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    .post-image {
+        flex-shrink: 0;
+        width: 160px;
+        height: 110px;
+        margin-right: 25px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 12px rgba(63, 81, 181, 0.1);
+    }
+
+    .post-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .post-preview:hover .post-image img {
+        transform: scale(1.05);
+    }
+
+    .post-content {
+        flex: 1;
+    }
+
+    .post-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+    }
+
+    .post-meta time {
+        color: #5a6c7d;
+        font-size: 0.9em;
+        font-weight: 500;
+    }
+
+    .post-categories {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .category-tag {
+        padding: 4px 10px;
+        border-radius: 15px;
+        font-size: 0.8em;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(5px);
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-tag:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Auto-generated category colors */
+    .category-maths {
+        background-color: rgba(232, 234, 246, 0.9);
+        color: #3f51b5;
+    }
+
+    .category-maths:hover {
+        background-color: #3f51b5;
+        color: white;
+    }
+
+    .category-random {
+        background-color: rgba(255, 235, 238, 0.9);
+        color: #e91e63;
+    }
+
+    .category-random:hover {
+        background-color: #e91e63;
+        color: white;
+    }
+
+    .category-history {
+        background-color: rgba(232, 245, 233, 0.9);
+        color: #4caf50;
+    }
+
+    .category-history:hover {
+        background-color: #4caf50;
+        color: white;
+    }
+
+    .category-ai-safety {
+        background-color: rgba(255, 243, 224, 0.9);
+        color: #ff9800;
+    }
+
+    .category-ai-safety:hover {
+        background-color: #ff9800;
+        color: white;
+    }
+
+    .category-philosophy {
+        background-color: rgba(243, 229, 245, 0.9);
+        color: #9c27b0;
+    }
+
+    .category-philosophy:hover {
+        background-color: #9c27b0;
+        color: white;
+    }
+
+    .category-science {
+        background-color: rgba(224, 247, 250, 0.9);
+        color: #00bcd4;
+    }
+
+    .category-science:hover {
+        background-color: #00bcd4;
+        color: white;
+    }
+
+    .category-technology {
+        background-color: rgba(239, 235, 233, 0.9);
+        color: #795548;
+    }
+
+    .category-technology:hover {
+        background-color: #795548;
+        color: white;
+    }
+
+    .category-writing {
+        background-color: rgba(236, 239, 241, 0.9);
+        color: #607d8b;
+    }
+
+    .category-writing:hover {
+        background-color: #607d8b;
+        color: white;
+    }
+
+    /* Default styling for any categories not explicitly defined */
+    .category-tag:not([class*="category-"]) {
+        background-color: rgba(224, 224, 224, 0.9);
+        color: #666;
+    }
+
+    .category-tag:not([class*="category-"]):hover {
+        background-color: #666;
+        color: white;
+    }
+
+    .category-random {
+        background-color: #f3e5f5;
+        color: #9c27b0;
+    }
+
+    .category-random:hover {
+        background-color: #9c27b0;
+        color: white;
+    }
+
+    .category-ai-safety {
+        background-color: #e0f2f1;
+        color: #00695c;
+    }
+
+    .category-ai-safety:hover {
+        background-color: #00695c;
+        color: white;
+    }
+
+    .post-title {
+        margin: 10px 0;
+        line-height: 1.3;
+    }
+
+    .post-title a {
+        color: #3f51b5;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .post-title a:hover {
+        color: #1a237e;
+    }
+
+    .post-excerpt {
+        color: #5a6c7d;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .read-more {
+        color: #3f51b5;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9em;
+        transition: all 0.2s ease;
+        padding: 6px 12px;
+        border-radius: 15px;
+        background: rgba(63, 81, 181, 0.1);
+        backdrop-filter: blur(5px);
+        display: inline-block;
+    }
+
+    .read-more:hover {
+        color: white;
+        background: #3f51b5;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(63, 81, 181, 0.3);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .page-container {
+            max-width: 95vw;
+            padding: 20px 15px;
+        }
+
+        .posts-wrapper {
+            padding: 30px 25px;
+        }
+
+        .posts-wrapper h2 {
+            font-size: 1.8em;
+        }
+
+        .posts-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .filter-controls {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 8px 14px;
+            font-size: 0.85em;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .posts-wrapper {
+            padding: 25px 20px;
+        }
+
+        .posts-wrapper h2 {
+            font-size: 1.6em;
+        }
+
+        .post-preview {
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .post-image {
+            width: 100%;
+            height: 160px;
+            margin-right: 0;
+            margin-bottom: 20px;
+        }
+
+        .post-meta {
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .filter-controls {
+            gap: 8px;
+        }
+
+        .filter-btn {
+            padding: 6px 12px;
+            font-size: 0.8em;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .posts-wrapper {
+            padding: 20px 15px;
+        }
+
+        .posts-wrapper h2 {
+            font-size: 1.4em;
+        }
+
+        .post-preview {
+            padding: 15px;
+        }
+    }
+</style>

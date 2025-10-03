@@ -1,0 +1,152 @@
+--- --- @import "minima";
+
+/* Override Minima theme wrapper width constraint */
+.wrapper {
+    max-width: none !important;
+}
+
+/* Center the header content */
+.site-header {
+    position: fixed !important;
+    top: 10px !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(0) !important;
+    z-index: 1000 !important;
+    max-width: 80vw !important;
+    width: auto !important;
+    padding: 12px 25px !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+    transition: transform 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+.site-header .wrapper {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+.site-header.hidden {
+    transform: translateX(-50%) translateY(-120%) !important;
+}
+
+/* Background gradient for all pages */
+body {
+    background: linear-gradient(135deg, #f8fafe 0%, #f0f4ff 100%);
+    min-height: 100vh;
+    padding-top: 100px;
+    /* Add space for fixed header */
+}
+
+/* Beautiful navigation bar styling */
+.site-nav {
+    background: none !important;
+    margin-left: 40px !important;
+    flex-shrink: 0 !important;
+}
+
+.site-nav .trigger {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+}
+
+.page-link {
+    color: #2c3e50 !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    padding: 10px 16px !important;
+    border-radius: 25px !important;
+    text-decoration: none !important;
+    margin: 0 4px !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: 1px solid transparent !important;
+    display: inline-block !important;
+    box-shadow: none !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+}
+
+.page-link:hover {
+    color: #1a237e !important;
+    background: rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(15px) !important;
+    box-shadow: 0 4px 15px rgba(63, 81, 181, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Site title styling - Choose your vibe! */
+.site-header .site-title {
+    /* OPTION 1: Modern Coder Vibes (current) */
+    font-family: 'Space Grotesk', sans-serif !important;
+
+    /* OPTION 2: Super Old Timey Swishy */
+    /* font-family: 'Fredericka the Great', cursive !important; */
+
+    /* OPTION 3: Chill Handwritten */
+    /* font-family: 'Pacifico', cursive !important; */
+
+    font-size: 1.8rem !important;
+    font-weight: 600 !important;
+    color: #2c3e50 !important;
+    display: flex !important;
+    align-items: center !important;
+    letter-spacing: -0.01em !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease !important;
+    flex-shrink: 0 !important;
+}
+
+.site-header .site-title:hover {
+    color: #3f51b5 !important;
+    text-decoration: none !important;
+}
+
+/* Mobile menu styling */
+.site-nav .nav-trigger {
+    display: none !important;
+}
+
+.site-nav .menu-icon {
+    display: none !important;
+}
+
+.site-nav .trigger {
+    clear: none !important;
+    display: flex !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 600px) {
+    .site-header {
+        max-width: 95vw !important;
+        padding: 10px 15px !important;
+    }
+
+    .site-nav {
+        margin-left: 20px !important;
+    }
+
+    .page-link {
+        padding: 8px 12px !important;
+        margin: 0 2px !important;
+        font-size: 0.9em !important;
+    }
+
+    .site-header .site-title {
+        font-size: 1.5rem !important;
+    }
+}

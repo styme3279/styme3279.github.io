@@ -38,9 +38,8 @@ collections:
 
 
 kramdown:
-  math_engine: katex
+  math_engine: mathjax
 plugins:
-  - mathjax
   - jekyll-seo-tag
 
 exclude:

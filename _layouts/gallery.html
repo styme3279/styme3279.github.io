@@ -1,47 +1,105 @@
 ---
 layout: default
 ---
-<article class="gallery">
-  <header class="gallery-header">
-    <h1 class="gallery-title">{{ page.title | escape }}</h1>
-    {% if page.description %}
-    <p class="gallery-description">{{ page.description }}</p>
-    {% endif %}
-  </header>
-
-  <div class="gallery-content">
-    {{ content }}
-
-    {% if page.gallery_path %}
-    {% assign image_files = site.static_files | where_exp: "file", "file.path contains page.gallery_path" %}
-    <div class="photo-grid">
-      <!-- Sizing elements for Masonry -->
-      <div class="grid-sizer"></div>
-      <div class="gutter-sizer"></div>
-
-      {% for image in image_files %}
-      <figure class="photo-item">
-        <img src="{{ image.path | relative_url }}" alt="{{ image.name | escape }}" loading="lazy" decoding="async"
-          fetchpriority="{% if forloop.index == 1 %}high{% else %}low{% endif %}">
-      </figure>
-      {% else %}
-      <p>No images found in the specified gallery path.</p>
-      {% endfor %}
-    </div>
-    {% else %}
-    <p>No gallery path specified.</p>
-    {% endif %}
-  </div>
-</article>
 
 <style>
-  /* Center the gallery on large screens */
-  .gallery-content {
-    max-width: 1600px;
+  body {
+    background: linear-gradient(135deg, #f8fafe 0%, #f0f4ff 100%);
+    min-height: 100vh;
+  }
+</style>
+
+<div class="gallery-container">
+  <div class="gallery-glass">
+    <header class="gallery-header">
+      <h1 class="gallery-title">{{ page.title | escape }}</h1>
+      {% if page.description %}
+      <p class="gallery-description">{{ page.description }}</p>
+      {% endif %}
+    </header>
+
+    <div class="gallery-content">
+      {{ content }}
+
+      {% if page.gallery_path %}
+      {% assign image_files = site.static_files | where_exp: "file", "file.path contains page.gallery_path" %}
+      <div class="photo-grid">
+        <!-- Sizing elements for Masonry -->
+        <div class="grid-sizer"></div>
+        <div class="gutter-sizer"></div>
+
+        {% for image in image_files %}
+        <figure class="photo-item">
+          <img src="{{ image.path | relative_url }}" alt="{{ image.name | escape }}" loading="lazy" decoding="async"
+            fetchpriority="{% if forloop.index == 1 %}high{% else %}low{% endif %}">
+        </figure>
+        {% else %}
+        <p>No images found in the specified gallery path.</p>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p>No gallery path specified.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox modal -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <span class="lightbox-nav prev" id="lightbox-prev">&#8249;</span>
+    <img id="lightbox-img" src="" alt="">
+    <span class="lightbox-nav next" id="lightbox-next">&#8250;</span>
+  </div>
+</div>
+
+<style>
+  /* Glass-morphism gallery container */
+  .gallery-container {
+    max-width: 70vw;
     margin: 0 auto;
+    padding: 20px;
   }
 
-  /* Masonry base: we control column widths via CSS, Masonry handles vertical packing */
+  .gallery-glass {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    box-sizing: border-box;
+  }
+
+  /* Gallery header styling */
+  .gallery-header {
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom: 2px solid rgba(63, 81, 181, 0.1);
+    padding-bottom: 30px;
+  }
+
+  .gallery-title {
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .gallery-description {
+    color: #5a6c7d;
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* Photo grid styling */
+  .gallery-content {
+    width: 100%;
+  }
+
   .photo-grid {
     margin: 0 auto;
   }
@@ -53,7 +111,7 @@ layout: default
 
   /* 1 col by default on tiny screens */
   .gutter-sizer {
-    width: 16px;
+    width: 20px;
   }
 
   /* At >=640px: 2 columns */
@@ -61,7 +119,7 @@ layout: default
 
     .grid-sizer,
     .photo-item {
-      width: calc((100% - 16px) / 2);
+      width: calc((100% - 20px) / 2);
     }
   }
 
@@ -70,7 +128,7 @@ layout: default
 
     .grid-sizer,
     .photo-item {
-      width: calc((100% - 2 * 16px) / 3);
+      width: calc((100% - 2 * 20px) / 3);
     }
   }
 
@@ -79,61 +137,187 @@ layout: default
 
     .grid-sizer,
     .photo-item {
-      width: calc((100% - 3 * 16px) / 4);
-    }
-  }
-
-  /* At >=1600px: 5 columns */
-  @media (min-width: 1600px) {
-
-    .grid-sizer,
-    .photo-item {
-      width: calc((100% - 4 * 16px) / 5);
+      width: calc((100% - 3 * 20px) / 4);
     }
   }
 
   /* Allow extra-wide shots to span 2 columns at medium+ sizes */
   @media (min-width: 900px) {
     .photo-item.wide {
-      width: calc(2 * ((100% - 2 * 16px) / 3) + 16px);
+      width: calc(2 * ((100% - 2 * 20px) / 3) + 20px);
     }
-
-    /* spans 2 of 3 cols */
   }
 
   @media (min-width: 1200px) {
     .photo-item.wide {
-      width: calc(2 * ((100% - 3 * 16px) / 4) + 16px);
+      width: calc(2 * ((100% - 3 * 20px) / 4) + 20px);
     }
-
-    /* spans 2 of 4 cols */
-  }
-
-  @media (min-width: 1600px) {
-    .photo-item.wide {
-      width: calc(2 * ((100% - 4 * 16px) / 5) + 16px);
-    }
-
-    /* spans 2 of 5 cols */
   }
 
   .photo-item {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
 
   .photo-item img {
     display: block;
     width: 100%;
     height: auto;
-    /* preserve natural aspect ratio */
-    border-radius: 8px;
+    border-radius: 12px;
     opacity: 0;
-    /* subtle fade-in for perceived speed */
-    transition: opacity .25s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   }
 
   .photo-item img[data-loaded="true"] {
     opacity: 1;
+  }
+
+  .photo-item img:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+  }
+
+  /* Lightbox modal styling */
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+  }
+
+  .lightbox.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
+    width: auto;
+    height: auto;
+  }
+
+  /* Special handling for portrait images */
+  .lightbox img.portrait {
+    max-width: 60vw;
+    max-height: 85vh;
+  }
+
+  /* Special handling for very wide images */
+  .lightbox img.landscape {
+    max-width: 85vw;
+    max-height: 70vh;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    user-select: none;
+  }
+
+  .lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .lightbox-nav.prev {
+    left: -70px;
+  }
+
+  .lightbox-nav.next {
+    right: -70px;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Mobile responsive adjustments */
+  @media (max-width: 768px) {
+    .gallery-container {
+      max-width: 95vw;
+      padding: 10px;
+    }
+
+    .gallery-glass {
+      padding: 25px;
+    }
+
+    .gallery-title {
+      font-size: 2em;
+    }
+
+    .gallery-description {
+      font-size: 1.1em;
+    }
+
+    .gutter-sizer {
+      width: 15px;
+    }
   }
 </style>
 
@@ -183,6 +367,114 @@ layout: default
           });
         }
       });
+    });
+
+    // Lightbox functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+    const allImages = Array.from(document.querySelectorAll('.photo-item img'));
+    let currentIndex = 0;
+
+    // Open lightbox when clicking on an image
+    allImages.forEach((img, index) => {
+      img.addEventListener('click', () => {
+        currentIndex = index;
+        showLightbox(img.src);
+      });
+    });
+
+    function showLightbox(src) {
+      lightboxImg.src = src;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+
+      // Detect image orientation and apply appropriate class
+      lightboxImg.onload = function () {
+        const aspectRatio = this.naturalWidth / this.naturalHeight;
+
+        // Remove previous orientation classes
+        lightboxImg.classList.remove('portrait', 'landscape');
+
+        if (aspectRatio < 0.8) {
+          // Portrait image (height > width)
+          lightboxImg.classList.add('portrait');
+        } else if (aspectRatio > 1.5) {
+          // Very wide landscape image
+          lightboxImg.classList.add('landscape');
+        }
+        // Square-ish images (0.8 <= ratio <= 1.5) get default styling
+      };
+    }
+
+    function hideLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    function showPrevious() {
+      currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
+      lightboxImg.src = allImages[currentIndex].src;
+
+      // Apply orientation detection
+      lightboxImg.onload = function () {
+        const aspectRatio = this.naturalWidth / this.naturalHeight;
+        lightboxImg.classList.remove('portrait', 'landscape');
+
+        if (aspectRatio < 0.8) {
+          lightboxImg.classList.add('portrait');
+        } else if (aspectRatio > 1.5) {
+          lightboxImg.classList.add('landscape');
+        }
+      };
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % allImages.length;
+      lightboxImg.src = allImages[currentIndex].src;
+
+      // Apply orientation detection
+      lightboxImg.onload = function () {
+        const aspectRatio = this.naturalWidth / this.naturalHeight;
+        lightboxImg.classList.remove('portrait', 'landscape');
+
+        if (aspectRatio < 0.8) {
+          lightboxImg.classList.add('portrait');
+        } else if (aspectRatio > 1.5) {
+          lightboxImg.classList.add('landscape');
+        }
+      };
+    }
+
+    // Event listeners
+    lightboxClose.addEventListener('click', hideLightbox);
+    lightboxPrev.addEventListener('click', showPrevious);
+    lightboxNext.addEventListener('click', showNext);
+
+    // Close lightbox when clicking outside the image
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        hideLightbox();
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+
+      switch (e.key) {
+        case 'Escape':
+          hideLightbox();
+          break;
+        case 'ArrowLeft':
+          showPrevious();
+          break;
+        case 'ArrowRight':
+          showNext();
+          break;
+      }
     });
   });
 </script>

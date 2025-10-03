@@ -1,12 +1,11 @@
 ---
-
 layout: post
 title: "First Isomorphism Theorem Poem"
 categories: maths
 date: 2024-08-27 20:30:00 +0100
 tags: [maths, poems]
 comments: true
-
+excerpt_text: "A mathematical proof and accompanying poem explaining the First Isomorphism Theorem in group theory."
 ---
 
 First, I'll prove the first isomorphism theorem (in case you aren't already familiar with it).

@@ -1,27 +1,100 @@
 ---
 layout: default
 ---
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-    <p class="post-meta">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {{ page.date | date: date_format }}
-      </time>
-      {%- if page.author -%}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
-      {%- endif -%}</p>
-  </header>
+<style>
+  .post-container {
+    max-width: 70vw;
+    margin: 0 auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
 
-  <div class="post-content e-content" itemprop="articleBody">
-    {{ content }}
-  </div>
+  .post-title {
+    color: #2c3e50;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-bottom: 2px solid rgba(63, 81, 181, 0.1);
+    padding-bottom: 20px;
+  }
 
-  {%- if site.disqus.shortname -%}
+  .post-meta {
+    color: #5a6c7d;
+    text-align: center;
+    margin-bottom: 30px;
+    font-style: italic;
+  }
+
+  .post-content {
+    color: #2c3e50;
+    line-height: 1.7;
+  }
+
+  .post-content h1,
+  .post-content h2,
+  .post-content h3 {
+    color: #2c3e50;
+    margin-top: 2em;
+    margin-bottom: 1em;
+  }
+
+  .post-content a {
+    color: #3f51b5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .post-content a:hover {
+    color: #1a237e;
+    text-decoration: underline;
+  }
+
+  /* Mobile responsive adjustments */
+  @media (max-width: 768px) {
+    .post-container {
+      max-width: 95vw;
+      padding: 20px 15px;
+    }
+
+    .post-title {
+      font-size: 1.8em;
+    }
+  }
+</style>
+
+<div class="post-container">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+      <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+      <p class="post-meta">
+        <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+          {{ page.date | date: date_format }}
+        </time>
+        {%- if page.author -%}
+        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card"
+            itemprop="name">{{ page.author }}</span></span>
+        {%- endif -%}
+      </p>
+    </header>
+
+    <div class="post-content e-content" itemprop="articleBody">
+      {{ content }}
+    </div>
+
+    {%- if site.disqus.shortname -%}
     {%- include disqus_comments.html -%}
-  {%- endif -%}
+    {%- endif -%}
 
-  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
-</article>
+    <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+  </article>
+</div>

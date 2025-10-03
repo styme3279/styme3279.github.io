@@ -3,22 +3,31 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {%- seo -%}
-  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
-  <link rel="shortcut icon" type = "image/png" href = "/images/favicon.png"> 
+  <link rel="stylesheet" href="{{ " /assets/main.css" | relative_url }}">
+  <!-- Cool fonts for header - choose your vibe! -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pacifico&family=Space+Grotesk:wght@400;500;600;700&family=Fredericka+the+Great&family=Inter:wght@400;500;600&family=Lora:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
   {%- feed_meta -%}
   {%- if jekyll.environment == 'production' and site.google_analytics -%}
-    {%- include google-analytics.html -%}
+  {%- include google-analytics.html -%}
   {%- endif -%}
-  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <style>
     .footnotes {
-    font-size: 14px;
-    margin: –10px 20px;
-    color: gray;
+      font-size: 14px;
+      margin: –10px 20px;
+      color: gray;
     }
-    a.footnote:before { content: "["; }
 
-    a.footnote:after { content: "]"; }
+    a.footnote:before {
+      content: "[";
+    }
 
+    a.footnote:after {
+      content: "]";
+    }
   </style>
 </head>

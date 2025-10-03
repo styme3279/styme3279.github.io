@@ -28,9 +28,7 @@ layout: default
         </div>
     </section>
 
-    <hr noshade color: #EEEEEE
-        style="width:75%;text-align:left;margin-left:0;color: #EEEEEE;background-color: #EEEEEE; border-color: #EEEEEE; height: 1px">
-    <br>
+    <hr>
 
     <section class="interests">
         <h2>Things I Enjoy</h2>
@@ -73,18 +71,32 @@ layout: default
 </div>
 
 <style>
+    /* Override Minima theme wrapper width constraint only */
+    .wrapper {
+        max-width: none !important;
+    }
+
+    /* Beautiful navigation bar styling only */
     .home {
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
+        padding: 20px 0;
     }
 
     .hero {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 2em;
+        margin-bottom: 3em;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 4px 20px rgba(63, 81, 181, 0.1);
+        backdrop-filter: blur(10px);
+        max-width: 900px;
+        width: 90%;
     }
 
     .hero-content {
@@ -93,12 +105,48 @@ layout: default
         align-items: center;
     }
 
-    .hero-image img {
-        max-width: 50vw;
+    .hero-image {
+        margin: 20px 0;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 25px rgba(63, 81, 181, 0.15);
+        transition: transform 0.3s ease;
     }
 
-    .hero-text {
-        margin-top: 1em;
+    .hero-image:hover {
+        transform: scale(1.02);
+    }
+
+    .hero-image img {
+        max-width: 35vw;
+        min-width: 300px;
+        height: auto;
+        display: block;
+    }
+
+    .hero-text h1 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-text p {
+        color: #4a5568;
+        line-height: 1.6;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .hero-text a {
+        color: #3f51b5;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.2s ease;
+    }
+
+    .hero-text a:hover {
+        color: #1a237e;
+        text-decoration: underline;
     }
 
     .interests,
@@ -107,6 +155,16 @@ layout: default
         width: 80%;
         max-width: 800px;
         margin-bottom: 2em;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 3px 15px rgba(63, 81, 181, 0.08);
+    }
+
+    .interests h2 {
+        color: #2c3e50;
+        margin-bottom: 25px;
+        font-size: 1.8em;
     }
 
     .interest-links,
@@ -115,17 +173,94 @@ layout: default
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
+        gap: 20px;
     }
 
     .interest-item,
     .highlight-content {
         flex: 1;
-        min-width: 200px;
-        margin: 1em;
+        min-width: 220px;
+        padding: 20px;
+        background: rgba(63, 81, 181, 0.05);
+        border-radius: 10px;
+        border: 1px solid rgba(63, 81, 181, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .interest-item:hover {
+        background: rgba(63, 81, 181, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(63, 81, 181, 0.15);
+    }
+
+    .interest-item h3 {
+        margin-bottom: 10px;
+        color: #2c3e50;
+    }
+
+    .interest-item h3 a {
+        color: #3f51b5;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .interest-item h3 a:hover {
+        color: #1a237e;
+    }
+
+    .interest-item p {
+        color: #5a6c7d;
+        line-height: 1.5;
+        margin: 0;
     }
 
     .highlight-image img {
         max-width: 100%;
         border-radius: 10px;
+    }
+
+    /* Custom styling for the divider */
+    hr {
+        border: none;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #3f51b5, transparent);
+        margin: 40px auto;
+        width: 60%;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .hero {
+            width: 95%;
+            padding: 20px;
+        }
+
+        .hero-image img {
+            max-width: 80vw;
+            min-width: 250px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.2em !important;
+        }
+
+        .interest-item {
+            min-width: 100%;
+        }
+
+        .interests {
+            width: 95%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-image img {
+            max-width: 90vw;
+            min-width: 200px;
+        }
+
+        .hero-text h1 {
+            font-size: 1.8em !important;
+        }
     }
 </style>
